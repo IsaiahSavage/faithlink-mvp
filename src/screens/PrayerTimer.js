@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
-import LinkButton from '../components/LinkButton';
 
 const PrayerTimer = (requests) => {
   const [timer, setTimer] = useState({
@@ -71,20 +70,13 @@ const PrayerTimer = (requests) => {
           <Text style={styles.requestButtonText}>{'Next >'}</Text>
         </TouchableOpacity>
       </View>
-      {/* <LinkButton
-        to={'/Prayer'}
-        containerStyles={styles.startStopButtonContainer}
-        textStyles={styles.startStopButtonText}
-      >
-        {isRunning ? 'Stop' : 'Start'}
-      </LinkButton> */}
       <Button
         onPress={() => handleTimerStartStop()}
         style={[styles.startStopButtonContainer, styles.startStopButtonText]}
         title={isRunning ? 'Stop' : 'Start'}
       />
       <Button
-        visible={!isRunning}
+        disabled={isRunning}
         onPress={() => resetTimer()}
         style={[styles.startStopButtonContainer, styles.startStopButtonText]}
         title="Reset"
