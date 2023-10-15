@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { SearchBar } from '@rneui/base';
+import { SearchBar } from '@rneui/themed';
 
 const Resources = () => {
   const [search, setSearch] = useState('');
@@ -20,6 +20,10 @@ const Resources = () => {
           placeholder="Search for a resource"
           onChangeText={setSearch}
           value={search}
+          containerStyle={styles.searchBarContainer}
+          inputContainerStyle={styles.searchBar}
+          // TODO: change to dynamic check for light theme
+          lightTheme={true}
         />
         <ScrollView horizontal style={styles.searchFilterContainer}>
           {/* TODO: refactor into SearchFilter component once functionality is added */}
@@ -42,7 +46,7 @@ const Resources = () => {
         <View style={styles.resourceGallery}>
           <TouchableOpacity
             style={styles.resourceGalleryItemContainer}
-            onPress={searchByTopic}
+            // onPress={searchByTopic}
           >
             <LinearGradient
               colors={['#FDBB2D', '#3A1C71']}
@@ -95,6 +99,15 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
+  },
+  searchBar: {
+    backgroundColor: '#E8E8E8',
+  },
+  searchBarContainer: {
+    margin: 10,
+    width: '95%',
+    borderRadius: 6,
+    backgroundColor: '#E8E8E8',
   },
   searchFilterContainer: {
     marginHorizontal: 10,
