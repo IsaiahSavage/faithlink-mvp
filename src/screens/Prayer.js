@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import LinkButton from '../components/LinkButton';
 import UpdateList from '../components/UpdateList';
 
@@ -51,7 +51,7 @@ const Prayer = () => {
     //     />
     //   </View>
     // </ScrollView>
-    <View style={styles.contentContainer}>
+    <SafeAreaView style={styles.contentContainer}>
       <View style={styles.prayerTimerContainer}>
         <LinkButton
           to={'/PrayerTimer'}
@@ -68,7 +68,7 @@ const Prayer = () => {
           containerStyles={styles.requestListContainer}
         />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
