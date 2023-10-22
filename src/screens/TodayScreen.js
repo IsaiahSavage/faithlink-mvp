@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import LoginTracker from '../components/LoginTracker';
 import HabitTracker from '../components/HabitTracker';
 
-const Today = () => {
+const TodayScreen = () => {
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.contentContainer}>
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Today;
+export default TodayScreen;

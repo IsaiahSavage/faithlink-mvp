@@ -1,14 +1,14 @@
 import React from 'react';
 import { noHeader } from '../settings';
 import { Stack } from '../Stack';
-import Profile from '../screens/Profile';
-import Settings from '../screens/Settings';
+import ProfileScreen from '../screens/ProfileScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 const ProfileStack = () => {
   return (
     <Stack.Navigator screenOptions={noHeader}>
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
       {/* Add additional screens here */}
     </Stack.Navigator>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Today from '../screens/Today';
-import Group from '../screens/Group';
+import TodayScreen from '../screens/TodayScreen';
+import GroupScreen from '../screens/GroupScreen';
 
 const HomeStackScreen = createMaterialTopTabNavigator();
 
@@ -16,10 +16,10 @@ const HomeStack = () => {
       screenOptions={{ tabBarStyle: { display: 'none' } }}
     >
       <HomeStackScreen.Screen name={'Today'}>
-        {() => <Today />}
+        {() => <TodayScreen />}
       </HomeStackScreen.Screen>
       <HomeStackScreen.Screen name={'Group'}>
-        {() => <Group />}
+        {() => <GroupScreen />}
       </HomeStackScreen.Screen>
     </HomeStackScreen.Navigator>
   );

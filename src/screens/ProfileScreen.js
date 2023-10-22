@@ -25,7 +25,7 @@ const LINKS = [
   },
 ];
 
-const Profile = () => {
+const ProfileScreen = () => {
   return (
     <View style={styles.contentContainer}>
       <View style={styles.loginStatsContainer}>
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default ProfileScreen;

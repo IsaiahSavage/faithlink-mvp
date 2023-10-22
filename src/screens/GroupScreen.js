@@ -25,7 +25,7 @@ const UPDATES = [
   },
 ];
 
-const Group = () => {
+const GroupScreen = () => {
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.contentContainer}>
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Group;
+export default GroupScreen;

@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 // TODO: convert to a single screen of settings instead of props
 // use https://reactnative.dev/docs/modal
-const Settings = ({ title, settings }) => {
+const SettingsScreen = ({ title, settings }) => {
   return (
     <View style={styles.contentContainer}>
       <StatusBar style="auto" />
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default SettingsScreen;
