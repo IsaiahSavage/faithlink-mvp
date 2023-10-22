@@ -31,7 +31,7 @@ const REQUESTS = [
   },
 ];
 
-const Prayer = () => {
+const PrayerScreen = () => {
   return (
     // <ScrollView style={styles.wrapper}>
     //   <View style={styles.contentContainer}>
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Prayer;
+export default PrayerScreen;

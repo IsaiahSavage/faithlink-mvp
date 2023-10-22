@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Platform, Linking, ActivityIndicator } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Tabs from './src/components/Tabs';
+import UserScreens from './src/UserScreens';
 
 const PERSISTENCE_KEY = 'NAVIGATION_STATE_V1';
 
@@ -61,7 +61,7 @@ export default function App() {
       theme={THEME_LIGHT} // TODO: create ternary for dark/light theme
     >
       <StatusBar style="auto" />
-      <Tabs />
+      <UserScreens />
     </NavigationContainer>
   );
 }

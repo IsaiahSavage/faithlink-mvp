@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Today from './Today';
-import Group from './Group';
+import Today from '../screens/Today';
+import Group from '../screens/Group';
 
 const HomeStackScreen = createMaterialTopTabNavigator();
 
-const Home = () => {
+const HomeStack = () => {
   return (
     <HomeStackScreen.Navigator
       initialRouteName="Today"
@@ -25,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeStack;

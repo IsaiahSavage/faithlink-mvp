@@ -10,7 +10,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { SearchBar } from '@rneui/themed';
 
-const Resources = () => {
+const ResourcesScreen = () => {
   const [search, setSearch] = useState('');
 
   return (
@@ -167,4 +167,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Resources;
+export default ResourcesScreen;

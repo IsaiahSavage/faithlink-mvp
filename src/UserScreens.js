@@ -1,38 +1,90 @@
 import React from 'react';
 import { defaultHeader } from './settings';
-import { Stack } from './Stack';
+import { Tabs } from './Tabs';
 import { Text } from 'react-native';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import HeaderProfileButton from './components/HeaderProfileButton';
 import LinkButton from './components/LinkButton';
-import Home from './screens/Home';
-import Resources from './screens/Resources';
 import HeaderHome from './components/HeaderHome';
-import Prayer from './screens/Prayer';
-import Activity from './screens/Activity';
-import Profile from './screens/Profile';
+import HomeStack from './stacks/HomeStack';
+import ResourcesStack from './stacks/ResourcesStack';
+import PrayerStack from './stacks/PrayerStack';
+import ActivityStack from './stacks/ActivityStack';
+import ProfileStack from './stacks/ProfileStack';
 
 const UserScreens = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <Tabs.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#002857',
+        tabBarInactiveTintColor: '#E8E8E8',
+        tabBarShowLabel: false,
+        headerStyle: {
+          // TODO: try on iPhone with notch
+          // height: 80,
+        },
+      }}
+    >
+      <Tabs.Screen
         name="Home"
-        component={Home}
-        options={{ defaultHeader, headerTitle: () => <HeaderHome /> }}
+        component={HomeStack}
+        options={{
+          ...defaultHeader,
+          headerTitle: () => <HeaderHome />,
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name={'home-outline'}
+              size={40}
+              color={focused ? '#002857' : '#E8E8E8'}
+            />
+          ),
+        }}
       />
-      <Stack.Screen
+      <Tabs.Screen
         name="Resources"
-        component={Resources}
-        options={defaultHeader}
+        component={ResourcesStack}
+        options={{
+          ...defaultHeader,
+          tabBarIcon: ({ focused }) => (
+            <Feather
+              name={'search'}
+              size={35}
+              color={focused ? '#002857' : '#E8E8E8'}
+            />
+          ),
+        }}
       />
-      <Stack.Screen name="Prayer" component={Prayer} options={defaultHeader} />
-      <Stack.Screen
+      <Tabs.Screen
+        name="Prayer"
+        component={PrayerStack}
+        options={{
+          ...defaultHeader,
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name={'hands-pray'}
+              size={35}
+              color={focused ? '#002857' : '#E8E8E8'}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="Activity"
-        component={Activity}
-        options={defaultHeader}
+        component={ActivityStack}
+        options={{
+          ...defaultHeader,
+          tabBarIcon: ({ focused }) => (
+            <Feather
+              name={'bell'}
+              size={35}
+              color={focused ? '#002857' : '#E8E8E8'}
+            />
+          ),
+        }}
       />
-      <Stack.Screen
+      <Tabs.Screen
         name="More"
-        component={Profile}
+        component={ProfileStack}
         options={{
           headerLeft: () => <HeaderProfileButton />,
           headerTitle: () => (
@@ -46,6 +98,7 @@ const UserScreens = () => {
               Isaiah Savage
             </Text>
           ),
+          // TODO: reimplement as button that is sets isLoggedin to false
           headerRight: () => (
             <LinkButton
               to={{ screen: 'Login' }}
@@ -56,9 +109,16 @@ const UserScreens = () => {
               Logout
             </LinkButton>
           ),
+          tabBarIcon: ({ focused }) => (
+            <Feather
+              name={'menu'}
+              size={35}
+              color={focused ? '#002857' : '#E8E8E8'}
+            />
+          ),
         }}
       />
-    </Stack.Navigator>
+    </Tabs.Navigator>
   );
 };
 

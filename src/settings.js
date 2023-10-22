@@ -2,10 +2,11 @@
  * @fileoverview Settings for pages to import.
  */
 
-// Header components
 import HeaderProfileButton from './components/HeaderProfileButton';
 import HeaderBackButton from './components/HeaderBackButton';
+import { View } from 'react-native';
 
+//#region Header Components
 export const noHeader = {
   headerShown: false,
 };
@@ -31,3 +32,5 @@ export const defaultHeaderWithBackButton = {
     fontWeight: 'normal',
   },
 };
+
+//#endregion Header Components

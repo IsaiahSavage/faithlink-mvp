@@ -29,7 +29,7 @@ const ACTIVITY = [
   },
 ];
 
-const Activity = () => {
+const ActivityScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Activity;
+export default ActivityScreen;

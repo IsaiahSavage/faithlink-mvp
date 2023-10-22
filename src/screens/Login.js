@@ -6,13 +6,20 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import LinkButton from '../components/LinkButton';
+import { TextInput, Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [hidePass, setHidePass] = useState(true);
+
+  const navigation = useNavigation();
+
+  // TODO: add Firebase authentication
+  const handleLogin = () => {
+    navigation.navigate('Home');
+  };
 
   return (
     <KeyboardAvoidingView
@@ -25,11 +32,11 @@ const Login = () => {
           style={styles.input}
           onChangeText={setUsername}
           value={username}
-          label={'Username'}
-          autoComplete={'username'}
-          underlineColor={'transparent'}
+          label="Username"
+          autoComplete="username"
+          underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
-          returnKeyType={'next'}
+          returnKeyType="next"
           onSubmitEditing={() => {
             this.PasswordInput.focus();
           }}
@@ -40,29 +47,44 @@ const Login = () => {
           onChangeText={setPassword}
           label="Password"
           value={password}
-          textContentType={'password'}
+          textContentType="password"
           secureTextEntry={hidePass ? true : false}
           autoCorrect={false}
           ref={(input) => {
             this.PasswordInput = input;
           }}
-          underlineColor={'transparent'}
+          underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           // TODO: icon is functional but not visible
           right={
-            <TextInput.Icon
-              name={'eye'}
-              onPress={() => setHidePass(!hidePass)}
-            />
+            <TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />
           }
         />
-        <LinkButton
+        {/* <LinkButton
           to={'/Home'}
           containerStyles={styles.loginContainer}
           textStyles={styles.loginText}
         >
           Log In
-        </LinkButton>
+        </LinkButton> */}
+        <Button
+          mode="contained"
+          style={styles.btnContainer}
+          buttonColor="#002857"
+          labelStyle={styles.loginText}
+          dark={true}
+          onPress={handleLogin}
+        >
+          Login
+        </Button>
+        <Button
+          mode="text"
+          style={styles.btnContainer}
+          labelStyle={styles.loginText}
+          onPress={handleLogin}
+        >
+          Register
+        </Button>
       </View>
     </KeyboardAvoidingView>
   );
@@ -88,19 +110,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#E8E8E8',
   },
-  loginContainer: {
-    backgroundColor: '#002857',
+  btnContainer: {
     alignSelf: 'center',
-    width: 300,
+    width: '80%',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 32,
     borderRadius: 100,
-    marginTop: 25,
+    marginTop: 20,
   },
   loginText: {
-    color: 'white',
     fontSize: 20,
+    width: '100%',
+    height: 'auto',
   },
 });
 
