@@ -4,7 +4,7 @@
 
 ### PURPOSE AND SCOPE
 
-This project is being conducted as a part of my larger Honors project for HON-4099. This project involves the development of a mobile app for Mount Vernon Nazarene University, specifically the Belong and Life Groups, which are small groups with the goal of enriching spiritual formation on campus. The app’s intention is to improve help facilitate the growth of a cohesive spiritual community on Mount Vernon Nazarene University’s campus. The scope of the development outlined in this project is a fully functional front end for the application.
+This project is being conducted as a part of my larger Honors project for HON-4099. This project involves the development of a mobile app for university and church small groups with the goal of enriching spiritual formation of members both as individuals and as a collective whole. The app’s intention is to improve help facilitate the growth of a cohesive spiritual community within these groups. The scope of the development outlined in this project is a fully functional front end for the application.
 
 ### FUNCTIONAL DESCRIPTION
 
@@ -17,15 +17,15 @@ This project is being conducted as a part of my larger Honors project for HON-40
   - The user should be able to access the Resources page from the bottom tabs.
   - The user should be able to view or access a resource from the Resources page.
   - The user should be able to search for a topic from the Resources page.
-  - **SHOULD HAVE**: The user should be able to filter search results by topic (e.g., Faith, Anxiety, Relationships, Health, etc.).
-- [ ] Life Group specific content (i.e., resources, contact info, prayer requests, group updates)
-  - The user should be able to access the Life Groups page from the Home page.
-  - The user should be able to see the Life Group they are a part of from the Life Groups page.
-  - The user should be able to view content specific to their Life Group from the Life Groups page.
-  - The user should be prompted to learn more about Life Groups if they are not a part of one.
-  - The user should be able to submit a prayer request to their Life Group.
-  - The user should be able to view prayer requests from fellow Life Group members.
-  - _SHOULD HAVE_: The user should be able to sign up for a Life Group from the Life Groups page during sign ups.
+  - _SHOULD HAVE_: The user should be able to filter search results by topic (e.g., Faith, Anxiety, Relationships, Health, etc.).
+- [ ] Group specific content (i.e., resources, contact info, prayer requests, group updates)
+  - The user should be able to access the groups page from the Home page.
+  - The user should be able to see the group they are a part of from the groups page.
+  - The user should be able to view content specific to their group from the groups page.
+  - The user should be prompted to learn more about groups if they are not a part of one.
+  - The user should be able to submit a prayer request to their group.
+  - The user should be able to view prayer requests from fellow group members.
+  - _SHOULD HAVE_: The user should be able to sign up for a group from the Group page during sign up periods.
 - [ ] Prayer timer for both guided and unguided prayer
   - The user should be able to access the Prayer page from the bottom tabs.
   - The user should be able to select a prayer length.
@@ -33,23 +33,22 @@ This project is being conducted as a part of my larger Honors project for HON-40
   - The user should be able to pause the prayer timer.
   - The user should be able to stop the prayer timer.
   - _SHOULD HAVE_: The user should be able to select whether the prayer is guided or unguided.
-  - _SHOULD HAVE_: The user should be able to view prayer requests by fellow members of their Life Group while using the guided prayer feature.
-- [ ] Profile linked to MVNU Office365 account
-  - The user should be able to create a local account.
+  - _SHOULD HAVE_: The user should be able to view prayer requests by fellow members of their group while using the guided prayer feature.
+- [ ] Profile linked to simple email/password authentication
+  - The user should be able to create a local account using an email and password.
   - The user should be able to log in to and out of the app.
   - The user should be able to view their profile information from the Profile page.
   - The user should be able to access the Settings page from the Profile page.
-  - The user should be able to access a link to the iAttended app from the Profile page.
-  - _SHOULD HAVE_: The user should be able to connect an existing MVNU Office365 account.
   - _SHOULD HAVE_: The user should be able to remove an account.
+  - _NICE TO HAVE_: The user should be able to access a link to the iAttended app from the Profile page.
 - [ ] Activity page
   - The user should be able to access the Activity page from the bottom tabs.
   - The user should be able to view important updates from Campus Ministries on the Activity page.
-  - The user should be able to view important updates from their Life Group on the Activity page.
+  - The user should be able to view important updates from their group on the Activity page.
   - The user should be able to dismiss updates.
   - Activities should be listed with a timestamp.
   - _NICE TO HAVE_: The user should receive a push notification when a new update is available.
-- [ ] Campus Ministries staff can create content for the Resources page (NOTE: this may be a future feature after first release)
+- [ ] Group leaders can create content for the Resources page (NOTE: this may be a future feature after first release)
 
 **I/O**
 Input
@@ -66,7 +65,7 @@ Output
 - Daily habit completion status
 - Display user settings
 - Display prayer requests
-- Display Life Group content
+- Display group content
 - Display resources, both generally and based on search query
 - Display updates
 
@@ -82,7 +81,6 @@ User Interfaces
 System Interfaces
 
 - Bible API(?)
-- MVNU Office365 Active Directory
 
 ### CONSTRAINTS
 
@@ -113,12 +111,10 @@ Expertise
 
 User Types
 
-- Students
+- Members (e.g., students, congregants, etc.)
 - Group Leaders
-- Campus Ministries Staff
 - Content Creators
-- Admins (MCS Department, ITS)
-- Stakeholders (i.e., Campus Ministries, ITS, etc.)
+- Admins (e.g., MCS Department, ITS, etc.)
 
 Adaptation Constraints
 
