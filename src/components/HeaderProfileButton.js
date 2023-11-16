@@ -1,17 +1,24 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import LinkButton from './LinkButton';
+import { IconButton } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderProfileButton = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <LinkButton
-        to={{ screen: 'Profile' }}
-        containerStyles={styles.buttonContainer}
-        textStyles={styles.text}
+      <IconButton
+        icon={'account-circle'}
+        iconColor="#002857"
+        size={35}
+        onPress={() => navigation.navigate('More')}
+        style={styles.buttonContainer}
+        labelStyle={styles.text}
       >
         I
-      </LinkButton>
+      </IconButton>
     </View>
   );
 };
@@ -24,10 +31,10 @@ const styles = StyleSheet.create({
     height: 35,
     width: 35,
     borderRadius: 35 / 2,
-    backgroundColor: '#002857',
+    // backgroundColor: ,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 10,
+    // marginRight: 30,
   },
   text: {
     color: 'white',

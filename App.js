@@ -1,67 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Platform, Linking, ActivityIndicator } from 'react-native';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { Stack } from './src/Stack';
+import { noHeader } from './src/settings';
 import UserScreens from './src/UserScreens';
-
-const PERSISTENCE_KEY = 'NAVIGATION_STATE_V1';
-
-const THEME_LIGHT = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#002857',
-    background: 'white',
-  },
-  dark: false,
-};
+import AuthScreens from './src/AuthScreens';
+import { onAuthStateChanged } from 'firebase/auth';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { FIREBASE_AUTH, FIRESTORE_DB } from './firebase/firebaseConfig';
+import { ActivityIndicator } from 'react-native-paper';
+import { UserProvider } from './src/contexts/UserContext';
 
 export default function App() {
-  const [isReady, setIsReady] = useState(__DEV__ ? false : true);
-  const [initialState, setInitialState] = useState();
+  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState({});
+  const [isBusy, setIsBusy] = useState(false);
 
+  // Update user state when auth state changes
+  // TODO: move data fetching to UserContext.js?
   useEffect(() => {
-    const restoreState = async () => {
-      try {
-        const initialUrl = await Linking.getInitialURL();
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      setUser(user);
+      if (user) {
+        setIsBusy(true);
+        const userQuery = query(
+          collection(FIRESTORE_DB, 'users'),
+          where('email', '==', user?.email),
+        );
 
-        if (Platform.OS !== 'web' && initialUrl == null) {
-          // Only restore state if there's no deep link and we're not on web
-          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-          const state = savedStateString
-            ? JSON.parse(savedStateString)
-            : undefined;
-
-          if (state !== undefined) {
-            setInitialState(state);
-          }
-        }
-      } finally {
-        setIsReady(true);
+        getDocs(userQuery)
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              console.log(doc.id, ' => ', doc.data());
+              setUserData({ ID: doc.id, data: doc.data() });
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => setIsBusy(false));
       }
-    };
+    });
+  }, []);
 
-    if (!isReady) {
-      restoreState();
-    }
-  }, [isReady]);
-
-  if (!isReady) {
-    // TODO: customize loading screen
-    return <ActivityIndicator size={'large'} color={'#002857'} />;
-  }
-
-  return (
-    <NavigationContainer
-      initialState={initialState}
-      onStateChange={(state) =>
-        AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-      }
-      theme={THEME_LIGHT} // TODO: create ternary for dark/light theme
-    >
-      <StatusBar style="auto" />
-      <UserScreens />
-    </NavigationContainer>
+  return isBusy ? (
+    <ActivityIndicator animating={true} />
+  ) : (
+    <UserProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {user ? (
+            <Stack.Screen
+              name="UserScreens"
+              component={UserScreens}
+              options={noHeader}
+              initialParams={{
+                userData: userData,
+              }}
+            />
+          ) : (
+            <Stack.Screen
+              name="AuthScreens"
+              component={AuthScreens}
+              options={noHeader}
+            />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 }

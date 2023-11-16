@@ -1,12 +1,18 @@
 import React from 'react';
 import { noHeader } from './settings';
 import { Stack } from './Stack';
-import Login from './screens/Login';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 const AuthScreens = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={'Login'} component={Login} options={noHeader} />
+      <Stack.Screen name={'Login'} component={LoginScreen} options={noHeader} />
+      <Stack.Screen
+        name={'Register'}
+        component={RegisterScreen}
+        options={noHeader}
+      />
     </Stack.Navigator>
   );
 };

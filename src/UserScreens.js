@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { defaultHeader } from './settings';
 import { Tabs } from './Tabs';
 import { Text } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import HeaderProfileButton from './components/HeaderProfileButton';
-import LinkButton from './components/LinkButton';
 import HeaderHome from './components/HeaderHome';
 import HomeStack from './stacks/HomeStack';
 import ResourcesStack from './stacks/ResourcesStack';
 import PrayerStack from './stacks/PrayerStack';
 import ActivityStack from './stacks/ActivityStack';
 import ProfileStack from './stacks/ProfileStack';
+import { Button } from 'react-native-paper';
+// import { collection, query, where, getDocs } from 'firebase/firestore';
+// import { FIREBASE_AUTH, FIRESTORE_DB } from '../firebase/firebaseConfig';
+import { FIREBASE_AUTH } from '../firebase/firebaseConfig';
+import { useUserContext } from './contexts/UserContext';
 
-const UserScreens = () => {
+const UserScreens = ({ route }) => {
+  const { state, dispatch } = useUserContext();
+
+  // const [userData, setUserData] = useState(null);
+
+  const user = route.params.userData;
+  // const user = FIREBASE_AUTH.currentUser;
+
+  // TODO: should we move data fetching to UserContext.js?
+  // const getUserData = async () => {
+  //   const userQuery = query(
+  //     collection(FIRESTORE_DB, 'users'),
+  //     where('email', '==', user?.email),
+  //   );
+
+  //   getDocs(userQuery)
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(doc.id, ' => ', doc.data());
+  //         setUserData({ ID: doc.id, data: doc.data() });
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       return false;
+  //     });
+
+  //   return true;
+  // };
+
+  useEffect(() => {
+    // const unsubscribe = getUserData();
+    // if (!unsubscribe) return;
+    // dispatch({ type: 'SET_USER_ID', payload: userData.ID });
+    // dispatch({ type: 'SET_USER_DATA', payload: userData.data });
+    if (!user) return;
+    dispatch({ type: 'SET_USER_ID', payload: user.ID });
+    dispatch({ type: 'SET_USER_DATA', payload: user.data });
+  }, []);
+
   return (
     <Tabs.Navigator
       screenOptions={{
@@ -30,7 +73,6 @@ const UserScreens = () => {
         component={HomeStack}
         options={{
           ...defaultHeader,
-          headerTitle: () => <HeaderHome />,
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name={'home-outline'}
@@ -95,19 +137,17 @@ const UserScreens = () => {
                 right: 40,
               }}
             >
-              Isaiah Savage
+              {user ? `${user.data.first} ${user.data.last}` : 'User'}
             </Text>
           ),
-          // TODO: reimplement as button that is sets isLoggedin to false
           headerRight: () => (
-            <LinkButton
-              to={{ screen: 'Login' }}
-              containerStyles={{}}
-              textStyles={{ color: '#002857', fontSize: 20 }}
+            <Button
               style={{ marginRight: 20 }}
+              labelStyle={{ color: '#002857', fontSize: 20 }}
+              onPress={() => FIREBASE_AUTH.signOut()}
             >
-              Logout
-            </LinkButton>
+              Log Out
+            </Button>
           ),
           tabBarIcon: ({ focused }) => (
             <Feather

@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import LoginTracker from '../components/LoginTracker';
 import HabitTracker from '../components/HabitTracker';
+import { useUserContext } from '../contexts/UserContext';
 
 const TodayScreen = () => {
+  // const [userData, setUserData] = useState(null);
+  const { state, dispatch } = useUserContext();
+
+  const setUserID = (id) => {
+    dispatch({ type: 'SET_USER_ID', payload: id });
+  };
+  const setUserData = (data) => {
+    dispatch({ type: 'SET_USER_DATA', payload: data });
+  };
+
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.contentContainer}>
-        <Text style={styles.welcomeText}>Welcome, Isaiah!</Text>
+        <Text style={styles.welcomeText}>
+          Welcome,{' '}
+          {Object.hasOwn(state.userData, 'first')
+            ? state.userData.first
+            : 'User'}
+          !
+        </Text>
         <LoginTracker />
         <HabitTracker />
       </View>

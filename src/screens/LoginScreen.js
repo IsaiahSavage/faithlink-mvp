@@ -5,20 +5,31 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { FIREBASE_AUTH } from '../../firebase/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
-const LoginScreen = () => {
-  const [username, setUsername] = useState('');
+const LoginScreen = ({ navigation }) => {
+  /** STATE VARIABLES */
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidePass, setHidePass] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const navigation = useNavigation();
+  const auth = FIREBASE_AUTH;
 
-  // TODO: add Firebase authentication
-  const handleLogin = () => {
-    navigation.navigate('Home');
+  const signIn = async () => {
+    setLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.log(error);
+      alert('Login failed:' + error.message || 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,10 +41,11 @@ const LoginScreen = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          onChangeText={setUsername}
-          value={username}
-          label="Username"
-          autoComplete="username"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          label="Email"
+          autoComplete="email"
+          autoCapitalize="none"
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
@@ -44,9 +56,10 @@ const LoginScreen = () => {
         />
         <TextInput
           style={styles.input}
-          onChangeText={setPassword}
+          onChangeText={(text) => setPassword(text)}
           label="Password"
           value={password}
+          autoCapitalize="none"
           textContentType="password"
           secureTextEntry={hidePass ? true : false}
           autoCorrect={false}
@@ -55,36 +68,34 @@ const LoginScreen = () => {
           }}
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
-          // TODO: icon is functional but not visible
           right={
             <TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />
           }
         />
-        {/* <LinkButton
-          to={'/Home'}
-          containerStyles={styles.loginContainer}
-          textStyles={styles.loginText}
-        >
-          Log In
-        </LinkButton> */}
-        <Button
-          mode="contained"
-          style={styles.btnContainer}
-          buttonColor="#002857"
-          labelStyle={styles.loginText}
-          dark={true}
-          onPress={handleLogin}
-        >
-          Login
-        </Button>
-        <Button
-          mode="text"
-          style={styles.btnContainer}
-          labelStyle={styles.loginText}
-          onPress={handleLogin}
-        >
-          Register
-        </Button>
+        {loading ? (
+          <ActivityIndicator size={'large'} color={'#002857'} />
+        ) : (
+          <>
+            <Button
+              mode="contained"
+              style={styles.btnContainer}
+              buttonColor="#002857"
+              labelStyle={styles.loginText}
+              dark={true}
+              onPress={signIn}
+            >
+              Login
+            </Button>
+            <Button
+              mode="text"
+              style={styles.btnContainer}
+              labelStyle={styles.loginText}
+              onPress={() => navigation.navigate('Register')}
+            >
+              Create an Account
+            </Button>
+          </>
+        )}
       </View>
     </KeyboardAvoidingView>
   );

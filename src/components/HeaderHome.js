@@ -1,25 +1,28 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import LinkButton from './LinkButton';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import { Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderHome = () => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <LinkButton
-        to={{ screen: 'Today' }}
-        containerStyles={styles.tabLinkContainer}
-        textStyles={styles.tabLinkText}
+    <SafeAreaView style={styles.container}>
+      <Button
+        onPress={() => navigation.navigate('Today')}
+        style={styles.tabLinkContainer}
+        labelStyle={styles.tabLinkText}
       >
         Today
-      </LinkButton>
-      <LinkButton
-        to={{ screen: 'Group' }}
-        containerStyles={styles.tabLinkContainer}
-        textStyles={styles.tabLinkText}
+      </Button>
+      <Button
+        onPress={() => navigation.navigate('Group')}
+        style={styles.tabLinkContainer}
+        labelStyle={styles.tabLinkText}
       >
         Group
-      </LinkButton>
-    </View>
+      </Button>
+    </SafeAreaView>
   );
 };
 
@@ -28,7 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    right: 60,
   },
   tabLinkContainer: {
     marginRight: 50,
