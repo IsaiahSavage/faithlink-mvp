@@ -10,7 +10,7 @@ import ResourcesStack from './stacks/ResourcesStack';
 import PrayerStack from './stacks/PrayerStack';
 import ActivityStack from './stacks/ActivityStack';
 import ProfileStack from './stacks/ProfileStack';
-import { Button } from 'react-native-paper';
+import { Button, IconButton } from 'react-native-paper';
 // import { collection, query, where, getDocs } from 'firebase/firestore';
 // import { FIREBASE_AUTH, FIRESTORE_DB } from '../firebase/firebaseConfig';
 import { FIREBASE_AUTH } from '../firebase/firebaseConfig';
@@ -141,13 +141,18 @@ const UserScreens = ({ route }) => {
             </Text>
           ),
           headerRight: () => (
-            <Button
-              style={{ marginRight: 20 }}
+            <IconButton
+              icon="logout"
+              size={35}
+              style={{
+                alignContent: 'center',
+                justifyContent: 'center',
+                width: 40,
+                height: 40,
+              }}
               labelStyle={{ color: '#002857', fontSize: 20 }}
               onPress={() => FIREBASE_AUTH.signOut()}
-            >
-              Log Out
-            </Button>
+            />
           ),
           tabBarIcon: ({ focused }) => (
             <Feather
