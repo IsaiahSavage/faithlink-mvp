@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import LinkButton from '../components/LinkButton';
+import { Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const LINKS = [
   {
@@ -26,6 +28,8 @@ const LINKS = [
 ];
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.contentContainer}>
       <View style={styles.loginStatsContainer}>
@@ -61,13 +65,14 @@ const ProfileScreen = () => {
         <FlatList
           data={LINKS}
           renderItem={({ item }) => (
-            <LinkButton
-              to={{ screen: `${item.screen}` }}
-              containerStyles={styles.settingsButton}
-              textStyles={styles.settingsButtonText}
+            <Button
+              onPress={() => navigation.navigate(item.screen)}
+              mode="contained"
+              style={styles.settingsButton}
+              labelStyle={styles.settingsButtonText}
             >
               {item.text}
-            </LinkButton>
+            </Button>
           )}
           keyExtractor={(item) => item.screen}
           scrollEnabled={false}
