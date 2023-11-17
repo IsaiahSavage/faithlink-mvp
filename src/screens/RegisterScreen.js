@@ -73,8 +73,9 @@ const RegisterScreen = () => {
           onChangeText={(text) => setFirstName(text)}
           value={firstName}
           label="First Name"
-          autoComplete="name"
+          autoComplete="given-name"
           autoCapitalize="words"
+          textContentType="givenName"
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
@@ -94,6 +95,7 @@ const RegisterScreen = () => {
           autoComplete="name"
           autoCapitalize="words"
           underlineColor="transparent"
+          textContentType="familyName"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
           ref={(input) => {
@@ -112,6 +114,7 @@ const RegisterScreen = () => {
           autoComplete="email"
           autoCapitalize="none"
           underlineColor="transparent"
+          textContentType="emailAddress"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
           ref={(input) => {
