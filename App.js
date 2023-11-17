@@ -43,7 +43,7 @@ export default function App() {
   }, []);
 
   return isBusy ? (
-    <ActivityIndicator animating={true} />
+    <ActivityIndicator animating={true} style={{ height: '100%' }} />
   ) : (
     <UserProvider>
       <NavigationContainer>

@@ -45,6 +45,7 @@ const LoginScreen = ({ navigation }) => {
           value={email}
           label="Email"
           autoComplete="email"
+          keyboardType="email-address"
           autoCapitalize="none"
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
