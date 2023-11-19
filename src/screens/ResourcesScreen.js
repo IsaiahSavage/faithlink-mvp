@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useNavigation } from '@react-navigation/native';
 import {
   Text,
   ScrollView,
@@ -6,12 +7,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Pressable,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SearchBar } from '@rneui/themed';
 
-const ResourcesScreen = () => {
+const ResourcesScreen = ({ route, navigation }) => {
   const [search, setSearch] = useState('');
+  // const navigation = useNavigation();
 
   return (
     <ScrollView style={styles.wrapper}>
@@ -37,12 +40,20 @@ const ResourcesScreen = () => {
             <Text style={styles.searchFilterText}>Faith</Text>
           </TouchableOpacity>
         </ScrollView>
-        {/* TODO: refactor into CardLarge component */}
+        {/* TODO: refactor into CardLarge component? */}
         <View style={styles.featuredResource}>
-          <Image style={styles.featuredResourceImage} />
-          <Text style={styles.featuredResourceText}>Conquering Your Fears</Text>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('ViewResourceScreen', { resourceID: 1 })
+            }
+          >
+            <Image style={styles.featuredResourceImage} />
+            <Text style={styles.featuredResourceText}>
+              Conquering Your Fears
+            </Text>
+          </Pressable>
         </View>
-        {/* TODO: refactor into Gallery and GalleryItem components */}
+        {/* TODO: refactor into Gallery and GalleryItem components? */}
         <View style={styles.resourceGallery}>
           <TouchableOpacity
             style={styles.resourceGalleryItemContainer}
