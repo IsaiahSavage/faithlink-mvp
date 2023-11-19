@@ -48,7 +48,6 @@ export default function App() {
   }, [isReady]);
 
   if (!isReady) {
-    // TODO: customize loading screen
     return <ActivityIndicator size={'large'} color={'#002857'} />;
   }
 

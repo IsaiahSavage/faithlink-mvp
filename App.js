@@ -16,7 +16,6 @@ export default function App() {
   const [isBusy, setIsBusy] = useState(false);
 
   // Update user state when auth state changes
-  // TODO: move data fetching to UserContext.js?
   useEffect(() => {
     onAuthStateChanged(FIREBASE_AUTH, (user) => {
       setUser(user);

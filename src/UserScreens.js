@@ -10,47 +10,16 @@ import ResourcesStack from './stacks/ResourcesStack';
 import PrayerStack from './stacks/PrayerStack';
 import ActivityStack from './stacks/ActivityStack';
 import ProfileStack from './stacks/ProfileStack';
-import { Button, IconButton } from 'react-native-paper';
-// import { collection, query, where, getDocs } from 'firebase/firestore';
-// import { FIREBASE_AUTH, FIRESTORE_DB } from '../firebase/firebaseConfig';
+import { IconButton } from 'react-native-paper';
 import { FIREBASE_AUTH } from '../firebase/firebaseConfig';
 import { useUserContext } from './contexts/UserContext';
 
 const UserScreens = ({ route }) => {
   const { state, dispatch } = useUserContext();
 
-  // const [userData, setUserData] = useState(null);
-
   const user = route.params.userData;
-  // const user = FIREBASE_AUTH.currentUser;
-
-  // TODO: should we move data fetching to UserContext.js?
-  // const getUserData = async () => {
-  //   const userQuery = query(
-  //     collection(FIRESTORE_DB, 'users'),
-  //     where('email', '==', user?.email),
-  //   );
-
-  //   getDocs(userQuery)
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         console.log(doc.id, ' => ', doc.data());
-  //         setUserData({ ID: doc.id, data: doc.data() });
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       return false;
-  //     });
-
-  //   return true;
-  // };
 
   useEffect(() => {
-    // const unsubscribe = getUserData();
-    // if (!unsubscribe) return;
-    // dispatch({ type: 'SET_USER_ID', payload: userData.ID });
-    // dispatch({ type: 'SET_USER_DATA', payload: userData.data });
     if (!user) return;
     dispatch({ type: 'SET_USER_ID', payload: user.ID });
     dispatch({ type: 'SET_USER_DATA', payload: user.data });
