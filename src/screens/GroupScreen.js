@@ -177,7 +177,14 @@ const GroupScreen = () => {
           )}
         </View>
         {/* TODO: Add leave group functionality */}
-        {/* <Button >Leave Group</Button> */}
+        <Button
+          style={styles.leaveGroupButton}
+          onPress={() => {
+            alert('Leave group functionality coming soon!');
+          }}
+        >
+          Leave Group
+        </Button>
       </ScrollView>
     </Provider>
   );
@@ -190,6 +197,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
+    minHeight: '90%',
   },
   groupSummaryContainer: {
     flexDirection: 'row',
@@ -223,6 +231,10 @@ const styles = StyleSheet.create({
   },
   groupActionContainer: {
     flexDirection: 'row',
+  },
+  leaveGroupButton: {
+    width: '35%',
+    alignSelf: 'center',
   },
 });
 
