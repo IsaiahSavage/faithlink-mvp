@@ -6,13 +6,15 @@ import {
   Text,
   RefreshControl,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import ActionIconLabeled from '../components/ActionIconLabeled';
 import UpdateList from '../components/UpdateList';
 import { useUserContext } from '../contexts/UserContext';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, TextInput, Portal, Provider, Modal } from 'react-native-paper';
 import { useFetchGroupInfo } from '../../firebase/fetchAPI';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import GroupContactModal from '../components/GroupContactModal';
 
 const GroupScreen = () => {
   const { state, dispatch } = useUserContext();
@@ -21,7 +23,14 @@ const GroupScreen = () => {
   );
   const [groupInfo, setGroupInfo] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [isGroupContactModalVisible, setIsGroupContactModalVisible] =
+    useState(false);
 
+  const showGroupContactModal = () => setIsGroupContactModalVisible(true);
+
+  const hideGroupContactModal = () => setIsGroupContactModalVisible(false);
+
+  const navigation = useNavigation();
   const group = async () => await useFetchGroupInfo(groupID);
 
   useEffect(() => {
@@ -86,74 +95,91 @@ const GroupScreen = () => {
     );
 
   return (
-    <ScrollView
-      style={styles.wrapper}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-    >
-      <View style={styles.contentContainer}>
-        <View style={styles.groupSummaryContainer}>
-          <Text style={styles.groupName}>
-            {groupInfo ? groupInfo.name : 'Error'}
-          </Text>
-          <View style={styles.meetingInfoContainer}>
-            <Text style={[styles.meetingInfoText, styles.meetingInfoHeader]}>
-              Next Meeting
+    <Provider>
+      <ScrollView
+        style={styles.wrapper}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <View style={styles.contentContainer}>
+          <View style={styles.groupSummaryContainer}>
+            <Text style={styles.groupName}>
+              {groupInfo ? groupInfo.name : 'Error'}
             </Text>
-            <Text style={styles.meetingInfoText}>
-              {groupInfo
-                ? new Date(
-                    groupInfo.nextMeetingTime.seconds * 1000,
-                  ).toLocaleDateString('en-us', {
-                    weekday: 'short',
-                    month: 'short',
-                    day: 'numeric',
-                  })
-                : 'Error'}
-            </Text>
-            <Text style={styles.meetingInfoText}>
-              {groupInfo
-                ? new Date(
-                    groupInfo.nextMeetingTime.seconds * 1000,
-                  ).toLocaleTimeString('en-us', {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    hour12: true,
-                  })
-                : 'Error'}
-            </Text>
-            <Text style={styles.meetingInfoText}>
-              {groupInfo ? groupInfo.nextMeetingLocation : 'Error'}
-            </Text>
+            <View style={styles.meetingInfoContainer}>
+              <Text style={[styles.meetingInfoText, styles.meetingInfoHeader]}>
+                Next Meeting
+              </Text>
+              <Text style={styles.meetingInfoText}>
+                {groupInfo
+                  ? new Date(
+                      groupInfo.nextMeetingTime.seconds * 1000,
+                    ).toLocaleDateString('en-us', {
+                      weekday: 'short',
+                      month: 'short',
+                      day: 'numeric',
+                    })
+                  : 'Error'}
+              </Text>
+              <Text style={styles.meetingInfoText}>
+                {groupInfo
+                  ? new Date(
+                      groupInfo.nextMeetingTime.seconds * 1000,
+                    ).toLocaleTimeString('en-us', {
+                      hour: 'numeric',
+                      minute: '2-digit',
+                      hour12: true,
+                    })
+                  : 'Error'}
+              </Text>
+              <Text style={styles.meetingInfoText}>
+                {groupInfo ? groupInfo.nextMeetingLocation : 'Error'}
+              </Text>
+            </View>
           </View>
+          <View style={styles.groupActionContainer}>
+            <ActionIconLabeled
+              name={'book'}
+              color={'#002857'}
+              text={'Resources'}
+              onPress={() => navigation.navigate('Resources')}
+            />
+            <ActionIconLabeled
+              name={'life-buoy'}
+              color={'#002857'}
+              text={'Prayer'}
+              onPress={() => navigation.navigate('Prayer')}
+            />
+            <ActionIconLabeled
+              name={'user'}
+              color={'#002857'}
+              text={'Contact'}
+              onPress={showGroupContactModal}
+            />
+            <Portal>
+              <GroupContactModal
+                visible={isGroupContactModalVisible}
+                hideModal={hideGroupContactModal}
+              />
+            </Portal>
+          </View>
+          {groupInfo && groupInfo.updates.length > 0 ? (
+            <UpdateList
+              updates={groupInfo.updates}
+              title={'Updates'}
+              containerStyles={{ marginHorizontal: 25, marginVertical: 40 }}
+            />
+          ) : (
+            <Text style={{ alignSelf: 'center', marginTop: 40 }}>
+              No updates yet.
+            </Text>
+          )}
         </View>
-        <View style={styles.groupActionContainer}>
-          <ActionIconLabeled
-            name={'book'}
-            color={'#002857'}
-            text={'Resources'}
-          />
-          <ActionIconLabeled
-            name={'life-buoy'}
-            color={'#002857'}
-            text={'Prayer'}
-          />
-          <ActionIconLabeled name={'user'} color={'#002857'} text={'Contact'} />
-        </View>
-        {groupInfo && groupInfo.updates.length > 0 ? (
-          <UpdateList
-            updates={groupInfo.updates}
-            title={'Updates'}
-            containerStyles={{ marginHorizontal: 25, marginVertical: 40 }}
-          />
-        ) : (
-          <Text style={{ alignSelf: 'center', marginTop: 40 }}>
-            No updates yet.
-          </Text>
-        )}
-      </View>
-    </ScrollView>
+        {/* TODO: Add leave group functionality */}
+        {/* <Button >Leave Group</Button> */}
+      </ScrollView>
+    </Provider>
   );
 };
 
