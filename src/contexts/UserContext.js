@@ -18,6 +18,11 @@ const userReducer = (state, action) => {
         ...state,
         userData: action.payload,
       };
+    case 'SET_GROUP_ID':
+      return {
+        ...state,
+        userData: { ...userData, groupID: action.payload },
+      };
     default:
       return state;
   }
