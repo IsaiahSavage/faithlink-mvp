@@ -29,8 +29,7 @@ export default function App() {
         getDocs(userQuery)
           .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-              console.log(doc.id, ' => ', doc.data());
-              setUserData({ ID: doc.id, data: doc.data() });
+              setUserData((userData) => ({ ID: doc.id, data: doc.data() }));
             });
           })
           .catch((error) => {
