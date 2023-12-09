@@ -16,6 +16,10 @@ const ResourcesScreen = ({ route, navigation }) => {
   const [search, setSearch] = useState('');
   // const navigation = useNavigation();
 
+  const handleSearchFilterPressed = (filterName) => {
+    navigation.navigate('ViewSearchResultsScreen', { search: filterName });
+  };
+
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.container}>
@@ -25,18 +29,28 @@ const ResourcesScreen = ({ route, navigation }) => {
           value={search}
           containerStyle={styles.searchBarContainer}
           inputContainerStyle={styles.searchBar}
+          // TODO: implment search functionality
           // TODO: change to dynamic check for light theme
           lightTheme={true}
         />
         <ScrollView horizontal style={styles.searchFilterContainer}>
           {/* TODO: refactor into SearchFilter component once functionality is added */}
-          <TouchableOpacity style={styles.searchFilter}>
+          <TouchableOpacity
+            style={styles.searchFilter}
+            onPress={() => handleSearchFilterPressed('prayer')}
+          >
             <Text style={styles.searchFilterText}>Prayer</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.searchFilter}>
+          <TouchableOpacity
+            style={styles.searchFilter}
+            onPress={() => handleSearchFilterPressed('anxiety')}
+          >
             <Text style={styles.searchFilterText}>Anxiety</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.searchFilter}>
+          <TouchableOpacity
+            style={styles.searchFilter}
+            onPress={() => handleSearchFilterPressed('faith')}
+          >
             <Text style={styles.searchFilterText}>Faith</Text>
           </TouchableOpacity>
         </ScrollView>
