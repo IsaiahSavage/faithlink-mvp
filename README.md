@@ -14,3 +14,10 @@ Here are a few screenshots from the app on iOS:
 ![Prayer Timer Page](/docs/screenshots/prayer_timer.jpeg)
 ![Activity Page](/docs/screenshots/activity.jpeg)
 ![Profile Page](/docs/screenshots/profile.jpeg)
+
+# Contributors
+
+- [Isaiah Savage](https://github.com/IsaiahSavage/)
+  - Senior Computer Science Major at Mount Vernon Nazarene University
+  - Lead Developer, Designer, UI/UX Designer
+  - Connect with me on [LinkedIn](https://www.linkedin.com/in/isaiah-savage/)
