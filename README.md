@@ -14,3 +14,7 @@ Here are a few screenshots from the app on iOS:
 ![Prayer Timer Page](/docs/screenshots/prayer_timer.jpeg)
 ![Activity Page](/docs/screenshots/activity.jpeg)
 ![Profile Page](/docs/screenshots/profile.jpeg)
+
+
+Contributors:
+    Piersen Schuiling - Requirements lead and secondary support for technical work and system integration work as needed. 
