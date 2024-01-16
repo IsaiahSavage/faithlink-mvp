@@ -15,9 +15,14 @@ Here are a few screenshots from the app on iOS:
 ![Activity Page](/docs/screenshots/activity.jpeg)
 ![Profile Page](/docs/screenshots/profile.jpeg)
 
-Contributers:
+# Contributors
 
-Gina Lawhon
-Project Manager
+- [Isaiah Savage](https://github.com/IsaiahSavage/)
+  - Senior Computer Science Major at Mount Vernon Nazarene University
+  - Lead Developer, Designer, UI/UX Designer
+  - Connect with me on [LinkedIn](https://www.linkedin.com/in/isaiah-savage/)
 
-My role in this team is to coordinate everyone's assignments, provide status updates to the professor, take the lead on interacting with the customer, keep track of time spent on the project by team members, and edit documentation prepared by myself and others.
+- [Gina Lawhon]
+  -Junior Computer Science Major
+  -Project Manager
+  -Coordinating everyone's assignments, providing status updates to the professor, taking the lead on interacting with the customer, keeping track of time spent on the project by team members, editing documentation
