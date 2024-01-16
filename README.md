@@ -14,3 +14,10 @@ Here are a few screenshots from the app on iOS:
 ![Prayer Timer Page](/docs/screenshots/prayer_timer.jpeg)
 ![Activity Page](/docs/screenshots/activity.jpeg)
 ![Profile Page](/docs/screenshots/profile.jpeg)
+
+Contributers:
+
+Gina Lawhon
+Project Manager
+
+My role in this team is to coordinate everyone's assignments, provide status updates to the professor, take the lead on interacting with the customer, keep track of time spent on the project by team members, and edit documentation prepared by myself and others.
