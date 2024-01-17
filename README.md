@@ -17,4 +17,4 @@ Here are a few screenshots from the app on iOS:
 
 
 Contributors:
-    Piersen Schuiling - Requirements lead and secondary support for technical work and system integration work as needed. 
+    Piersen Schuiling - Requirements lead and secondary support for technical work and system integration work as needed.
