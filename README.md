@@ -20,7 +20,7 @@ Here are a few screenshots from the app on iOS:
 - [Isaiah Savage](https://github.com/IsaiahSavage/)
   - Senior Computer Science Major at Mount Vernon Nazarene University
   - Lead Developer, Designer, UI/UX Designer
-  - Connect with me on [LinkedIn](https://www.linkedin.com/in/isaiah-savage/)
+  - Connect with me on [LinkedIn](https://www.linkedin.com/in/isaiahsavage/)
 
 - [Gina Lawhon]
   -Junior Computer Science Major
