@@ -26,3 +26,8 @@ Here are a few screenshots from the app on iOS:
   -Junior Computer Science Major
   -Project Manager
   -Coordinating everyone's assignments, providing status updates to the professor, taking the lead on interacting with the customer, keeping track of time spent on the project by team members, editing documentation
+
+- [Piersen Schuiling]
+  - Junior Computer Science Major at Mount Vernon Nazarene University
+  - Requirements Lead
+  - Secondary Support for technical work and system integration
