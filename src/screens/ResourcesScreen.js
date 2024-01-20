@@ -10,28 +10,45 @@ import {
   Pressable,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { SearchBar } from '@rneui/themed';
+import { Searchbar } from 'react-native-paper';
 
 const ResourcesScreen = ({ route, navigation }) => {
   const [search, setSearch] = useState('');
   // const navigation = useNavigation();
 
+  const handleSearchPressed = (search) => {
+    navigation.navigate('ViewSearchResultsScreen', {
+      search: search,
+      type: 'search',
+    });
+  };
+
   const handleSearchFilterPressed = (filterName) => {
-    navigation.navigate('ViewSearchResultsScreen', { search: filterName });
+    navigation.navigate('ViewSearchResultsScreen', {
+      search: filterName,
+      type: 'tag',
+    });
+  };
+
+  const handleMediaFilterPressed = (filterName) => {
+    navigation.navigate('ViewSearchResultsScreen', {
+      search: filterName,
+      type: 'media',
+    });
   };
 
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.container}>
-        <SearchBar
+        <Searchbar
           placeholder="Search for a resource"
           onChangeText={setSearch}
           value={search}
-          containerStyle={styles.searchBarContainer}
-          inputContainerStyle={styles.searchBar}
-          // TODO: implment search functionality
-          // TODO: change to dynamic check for light theme
-          lightTheme={true}
+          style={styles.searchBarContainer}
+          inputStyle={styles.searchBar}
+          onIconPress={() => handleSearchPressed(search)}
+          onSubmitEditing={() => handleSearchPressed(search)}
+          // TODO: add theme prop
         />
         <ScrollView horizontal style={styles.searchFilterContainer}>
           {/* TODO: refactor into SearchFilter component once functionality is added */}
@@ -71,7 +88,7 @@ const ResourcesScreen = ({ route, navigation }) => {
         <View style={styles.resourceGallery}>
           <TouchableOpacity
             style={styles.resourceGalleryItemContainer}
-            // onPress={searchByTopic}
+            onPress={() => handleMediaFilterPressed('article')}
           >
             <LinearGradient
               colors={['#FDBB2D', '#3A1C71']}
@@ -79,37 +96,46 @@ const ResourcesScreen = ({ route, navigation }) => {
               end={{ x: 1, y: 1 }}
               style={styles.resourceGalleryItemBackground}
             >
-              <Text style={styles.resourceGalleryItemText}>Topic 1</Text>
+              <Text style={styles.resourceGalleryItemText}>Articles</Text>
             </LinearGradient>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.resourceGalleryItemContainer}>
+          <TouchableOpacity
+            style={styles.resourceGalleryItemContainer}
+            onPress={() => handleMediaFilterPressed('video')}
+          >
             <LinearGradient
               colors={['#22c1c3', '#fdbb2d']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.resourceGalleryItemBackground}
             >
-              <Text style={styles.resourceGalleryItemText}>Topic 2</Text>
+              <Text style={styles.resourceGalleryItemText}>Videos</Text>
             </LinearGradient>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.resourceGalleryItemContainer}>
+          <TouchableOpacity
+            style={styles.resourceGalleryItemContainer}
+            onPress={() => handleMediaFilterPressed('image')}
+          >
             <LinearGradient
               colors={['#FC466B', '#3F5EFB']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.resourceGalleryItemBackground}
             >
-              <Text style={styles.resourceGalleryItemText}>Topic 3</Text>
+              <Text style={styles.resourceGalleryItemText}>Images</Text>
             </LinearGradient>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.resourceGalleryItemContainer}>
+          <TouchableOpacity
+            style={styles.resourceGalleryItemContainer}
+            onPress={() => handleMediaFilterPressed('audio')}
+          >
             <LinearGradient
               colors={['#f8ff00', '#3ad59f']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.resourceGalleryItemBackground}
             >
-              <Text style={styles.resourceGalleryItemText}>Topic 4</Text>
+              <Text style={styles.resourceGalleryItemText}>Audio</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
