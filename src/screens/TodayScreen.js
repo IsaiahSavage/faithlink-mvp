@@ -18,14 +18,16 @@ const TodayScreen = () => {
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.contentContainer}>
-        <Text style={styles.welcomeText}>
-          Welcome,{' '}
-          {Object.hasOwn(state.userData, 'first')
-            ? state.userData.first
-            : 'User'}
-          !
-        </Text>
-        <LoginTracker />
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.welcomeText}>
+            Welcome,{' '}
+            {Object.hasOwn(state.userData, 'first')
+              ? state.userData.first
+              : 'User'}
+            !
+          </Text>
+          <LoginTracker style={styles.welcomeStreak} />
+        </View>
         <HabitTracker />
       </View>
     </ScrollView>
@@ -41,13 +43,25 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignItems: 'center',
   },
+  welcomeContainer: {
+    marginTop: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
+  },
   welcomeText: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
     color: '#002857',
-    alignSelf: 'center',
-    marginTop: 10,
+    marginLeft: 10,
     marginBottom: 25,
+    flexGrow: 1,
+    flexBasis: '50%',
+  },
+  welcomeStreak: {
+    flexGrow: 1,
+    flexBasis: '50%',
   },
 });
 
