@@ -23,6 +23,22 @@ const userReducer = (state, action) => {
         ...state,
         userData: { ...userData, groupID: action.payload },
       };
+    case 'SET_LOGIN_STREAK':
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          loginStreak: action.payload,
+        },
+      };
+    case 'SET_LAST_LOGIN_DATE':
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          lastLoginDate: action.payload,
+        },
+      };
     default:
       return state;
   }

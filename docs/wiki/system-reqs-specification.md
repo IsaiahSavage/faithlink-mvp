@@ -1,4 +1,4 @@
-# System Requirements Specification - DRAFT
+# System Requirements Specification - DRAFT (UPDATED 1-29-2024)
 
 > This document contains a template structure for your system requirements specification. To use this outline, replace the description under each section heading with the information about your project, but keep all of the section headings to maintain the structure of the document. If a section does not apply to your project, keep the heading in your document, and just state that it is not applicable. (In some cases, we might discover later that your project does have requirements related to that section!)
 
@@ -16,7 +16,7 @@ This project is being conducted as a part of my larger Honors project for HON-40
 
 ### Human Resources
 
-I need more developers to finish the app. Without more human resources, I will have to keep the practicum scope limited to the front end of the app.
+Additional (2) developers have been provided via MVNU's CSC-3024 class. This will allow the practicum project scope to remain as the front-end interface but with additional working features due to backend development being conducted by the other developers.
 
 ### Business Context
 
@@ -39,11 +39,15 @@ System has to do that a common person could get (e.g., create an account)
   - View resources
   - View resources by topic
   - Search for resources
+  - Filter search results by topic
+  - Save a list of favorite resources
 - Group specific content (i.e., resources, contact info, prayer requests, group updates)
   - Sign up for a group
   - View group content
   - View group updates
   - View group prayer requests
+  - Discuss group content with other group members
+  - Contact group leader(s) directly
 - Prayer timer for both guided and unguided prayer
   - Submit a prayer request
   - View prayer requests
@@ -52,6 +56,8 @@ System has to do that a common person could get (e.g., create an account)
   - Log in to an account
   - Log out of an account
   - Remove an account
+  - View profile information
+  - View information on favorite resources
 - Activity page
 - Group leaders can create content for the Resources page
 
@@ -77,7 +83,9 @@ TBD
   - The user should be able to access the Resources page from the bottom tabs.
   - The user should be able to view or access a resource from the Resources page.
   - The user should be able to search for a topic from the Resources page.
+  - The user should be able to view or access group-specific resources from the Resources page.
   - _SHOULD HAVE_: The user should be able to filter search results by topic (e.g., Faith, Anxiety, Relationships, Health, etc.).
+  - _SHOULD HAVE_: The user should be able to save a list of favorite resources.
 - [ ] Group specific content (i.e., resources, contact info, prayer requests, group updates)
   - The user should be able to access the groups page from the Home page.
   - The user should be able to see the group they are a part of from the groups page.
@@ -85,10 +93,11 @@ TBD
   - The user should be prompted to learn more about groups if they are not a part of one.
   - The user should be able to submit a prayer request to their group.
   - The user should be able to view prayer requests from fellow group members.
-  - _SHOULD HAVE_: The user should be able to sign up for a group from the Group page during sign up periods.
+  - _SHOULD HAVE_: The user should be able to sign up for a group from the Group page during sign-up periods.
+  - _SHOULD HAVE_: The user should be able to discuss group content with other group members.
 - [ ] Prayer timer for both guided and unguided prayer
   - The user should be able to access the Prayer page from the bottom tabs.
-  - The user should be able to select a prayer length.
+  - The user should be able to select a prayer timer length.
   - The user should be able to start the prayer timer.
   - The user should be able to pause the prayer timer.
   - The user should be able to stop the prayer timer.
@@ -100,10 +109,14 @@ TBD
   - The user should be able to view their profile information from the Profile page.
   - The user should be able to access the Settings page from the Profile page.
   - _SHOULD HAVE_: The user should be able to remove an account.
-  - _NICE TO HAVE_: The user should be able to access a link to the iAttended app from the Profile page.
+  - _SHOULD HAVE_: The user should be able to view information on favorite resources.
+  - _SHOULD HAVE_: The user should be able to view their login streak.
+  - _SHOULD HAVE_: The user should be able to change their name.
+  - _NICE TO HAVE_: The user should be able to upload a profile picture.
+  - _NICE TO HAVE_: The user should be able to log in using a social media account (e.g., Google, Facebook, etc.).
+  - _NICE TO HAVE_: The user should be able to reset their password.
 - [ ] Activity page
   - The user should be able to access the Activity page from the bottom tabs.
-  - The user should be able to view important updates from Campus Ministries on the Activity page.
   - The user should be able to view important updates from their group on the Activity page.
   - The user should be able to dismiss updates.
   - Activities should be listed with a timestamp.
@@ -140,6 +153,8 @@ Describes network interfaces
   - Will need to establish a VM for each customer (i.e., MVNU, churches, etc.)
 
 - Bible API(?)
+
+  - No open-source APIs for devotionals. Will need to build our own.
 
 ## Non-functional Requirements (Other than those previously listed)
 
@@ -179,7 +194,7 @@ No time or memory constraints are currently established.
 
 ### Security Requirements
 
-- Encrypted passwords / other login information
+- Encrypted, hashed, and hashed passwords / other login information -- performed by Firebase
 - [GDPR compliance](https://gdpr.eu/compliance-checklist/)
   - _NOTE_: this is a legal requirement for any software that collects data from EU citizens
   - This may not be necessary to implement for this project, but it is worth considering.
@@ -220,8 +235,8 @@ Describes how to:
 1. Recreate dev environment
 
    - Clone repo
-   - `npm install`
-   - `npm start` or `npx expo start`
+   - run `npm install` within repo
+   - run `npm start` or `npx expo start` within repo
 
 2. Recreate pushing to prod
 
