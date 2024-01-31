@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
+  ImageBackground,
 } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../firebase/firebaseConfig';
@@ -62,131 +63,136 @@ const RegisterScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    <ImageBackground
+      source={require('../../assets/login-background.jpeg')}
+      style={{ width: '100%', height: '100%' }}
     >
-      <Text style={styles.title}>Register</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setFirstName(text)}
-          value={firstName}
-          label="First Name"
-          autoComplete="given-name"
-          autoCapitalize="words"
-          textContentType="givenName"
-          underlineColor="transparent"
-          theme={{ colors: { primary: '#002857' } }}
-          returnKeyType="next"
-          ref={(input) => {
-            this.FirstNameInput = input;
-          }}
-          onSubmitEditing={() => {
-            this.LastNameInput.focus();
-          }}
-          blurOnSubmit={false}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setLastName(text)}
-          value={lastName}
-          label="Last Name"
-          autoComplete="name"
-          autoCapitalize="words"
-          underlineColor="transparent"
-          textContentType="familyName"
-          theme={{ colors: { primary: '#002857' } }}
-          returnKeyType="next"
-          ref={(input) => {
-            this.LastNameInput = input;
-          }}
-          onSubmitEditing={() => {
-            this.EmailInput.focus();
-          }}
-          blurOnSubmit={false}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          label="Email"
-          autoComplete="email"
-          autoCapitalize="none"
-          underlineColor="transparent"
-          textContentType="emailAddress"
-          theme={{ colors: { primary: '#002857' } }}
-          returnKeyType="next"
-          ref={(input) => {
-            this.EmailInput = input;
-          }}
-          onSubmitEditing={() => {
-            this.PasswordInput.focus();
-          }}
-          blurOnSubmit={false}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setPassword(text)}
-          label="Password"
-          value={password}
-          autoCapitalize="none"
-          textContentType="password"
-          secureTextEntry={hidePass ? true : false}
-          autoCorrect={false}
-          returnKeyType="next"
-          ref={(input) => {
-            this.PasswordInput = input;
-          }}
-          onSubmitEditing={() => {
-            this.PasswordConfirmationInput.focus();
-          }}
-          underlineColor="transparent"
-          theme={{ colors: { primary: '#002857' } }}
-          right={
-            <TextInput.Icon
-              icon={hidePass ? 'eye' : 'eye-off'}
-              onPress={() => setHidePass(!hidePass)}
-            />
-          }
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setPasswordConfirmation(text)}
-          label="Confirm Password"
-          value={passwordConfirmation}
-          autoCapitalize="none"
-          textContentType="password"
-          secureTextEntry={hidePassConfirmation ? true : false}
-          autoCorrect={false}
-          ref={(input) => {
-            this.PasswordConfirmationInput = input;
-          }}
-          underlineColor="transparent"
-          theme={{ colors: { primary: '#002857' } }}
-          right={
-            <TextInput.Icon
-              icon={hidePassConfirmation ? 'eye' : 'eye-off'}
-              onPress={() => setHidePassConfirmation(!hidePassConfirmation)}
-            />
-          }
-        />
-        {loading ? (
-          <ActivityIndicator size={'large'} color={'#002857'} />
-        ) : (
-          <Button
-            mode="contained"
-            buttonColor="#002857"
-            style={styles.btnContainer}
-            labelStyle={styles.signupText}
-            dark={true}
-            onPress={signUp}
-          >
-            Sign Up
-          </Button>
-        )}
-      </View>
-    </KeyboardAvoidingView>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <Text style={styles.title}>Register</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setFirstName(text)}
+            value={firstName}
+            label="First Name"
+            autoComplete="given-name"
+            autoCapitalize="words"
+            textContentType="givenName"
+            underlineColor="transparent"
+            theme={{ colors: { primary: '#002857' } }}
+            returnKeyType="next"
+            ref={(input) => {
+              this.FirstNameInput = input;
+            }}
+            onSubmitEditing={() => {
+              this.LastNameInput.focus();
+            }}
+            blurOnSubmit={false}
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setLastName(text)}
+            value={lastName}
+            label="Last Name"
+            autoComplete="name"
+            autoCapitalize="words"
+            underlineColor="transparent"
+            textContentType="familyName"
+            theme={{ colors: { primary: '#002857' } }}
+            returnKeyType="next"
+            ref={(input) => {
+              this.LastNameInput = input;
+            }}
+            onSubmitEditing={() => {
+              this.EmailInput.focus();
+            }}
+            blurOnSubmit={false}
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            label="Email"
+            autoComplete="email"
+            autoCapitalize="none"
+            underlineColor="transparent"
+            textContentType="emailAddress"
+            theme={{ colors: { primary: '#002857' } }}
+            returnKeyType="next"
+            ref={(input) => {
+              this.EmailInput = input;
+            }}
+            onSubmitEditing={() => {
+              this.PasswordInput.focus();
+            }}
+            blurOnSubmit={false}
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setPassword(text)}
+            label="Password"
+            value={password}
+            autoCapitalize="none"
+            textContentType="password"
+            secureTextEntry={hidePass ? true : false}
+            autoCorrect={false}
+            returnKeyType="next"
+            ref={(input) => {
+              this.PasswordInput = input;
+            }}
+            onSubmitEditing={() => {
+              this.PasswordConfirmationInput.focus();
+            }}
+            underlineColor="transparent"
+            theme={{ colors: { primary: '#002857' } }}
+            right={
+              <TextInput.Icon
+                icon={hidePass ? 'eye' : 'eye-off'}
+                onPress={() => setHidePass(!hidePass)}
+              />
+            }
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setPasswordConfirmation(text)}
+            label="Confirm Password"
+            value={passwordConfirmation}
+            autoCapitalize="none"
+            textContentType="password"
+            secureTextEntry={hidePassConfirmation ? true : false}
+            autoCorrect={false}
+            ref={(input) => {
+              this.PasswordConfirmationInput = input;
+            }}
+            underlineColor="transparent"
+            theme={{ colors: { primary: '#002857' } }}
+            right={
+              <TextInput.Icon
+                icon={hidePassConfirmation ? 'eye' : 'eye-off'}
+                onPress={() => setHidePassConfirmation(!hidePassConfirmation)}
+              />
+            }
+          />
+          {loading ? (
+            <ActivityIndicator size={'large'} color={'#002857'} />
+          ) : (
+            <Button
+              mode="contained"
+              buttonColor="#002857"
+              style={styles.btnContainer}
+              labelStyle={styles.signupText}
+              dark={true}
+              onPress={signUp}
+            >
+              Sign Up
+            </Button>
+          )}
+        </View>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 };
 

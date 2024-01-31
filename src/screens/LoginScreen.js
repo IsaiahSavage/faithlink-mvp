@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
+  ImageBackground,
 } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { FIREBASE_AUTH } from '../../firebase/firebaseConfig';
@@ -33,72 +34,80 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    <ImageBackground
+      source={require('../../assets/login-background.jpeg')}
+      style={{ width: '100%', height: '100%' }}
     >
-      <Text style={styles.title}>Login</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          label="Email"
-          autoComplete="email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          underlineColor="transparent"
-          theme={{ colors: { primary: '#002857' } }}
-          returnKeyType="next"
-          onSubmitEditing={() => {
-            this.PasswordInput.focus();
-          }}
-          blurOnSubmit={false}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setPassword(text)}
-          label="Password"
-          value={password}
-          autoCapitalize="none"
-          textContentType="password"
-          secureTextEntry={hidePass ? true : false}
-          autoCorrect={false}
-          ref={(input) => {
-            this.PasswordInput = input;
-          }}
-          underlineColor="transparent"
-          theme={{ colors: { primary: '#002857' } }}
-          right={
-            <TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />
-          }
-        />
-        {loading ? (
-          <ActivityIndicator size={'large'} color={'#002857'} />
-        ) : (
-          <>
-            <Button
-              mode="contained"
-              style={styles.btnContainer}
-              buttonColor="#002857"
-              labelStyle={styles.loginText}
-              dark={true}
-              onPress={signIn}
-            >
-              Login
-            </Button>
-            <Button
-              mode="text"
-              style={styles.btnContainer}
-              labelStyle={styles.loginText}
-              onPress={() => navigation.navigate('Register')}
-            >
-              Create an Account
-            </Button>
-          </>
-        )}
-      </View>
-    </KeyboardAvoidingView>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <Text style={styles.title}>Login</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            label="Email"
+            autoComplete="email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            underlineColor="transparent"
+            theme={{ colors: { primary: '#002857' } }}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              this.PasswordInput.focus();
+            }}
+            blurOnSubmit={false}
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setPassword(text)}
+            label="Password"
+            value={password}
+            autoCapitalize="none"
+            textContentType="password"
+            secureTextEntry={hidePass ? true : false}
+            autoCorrect={false}
+            ref={(input) => {
+              this.PasswordInput = input;
+            }}
+            underlineColor="transparent"
+            theme={{ colors: { primary: '#002857' } }}
+            right={
+              <TextInput.Icon
+                icon="eye"
+                onPress={() => setHidePass(!hidePass)}
+              />
+            }
+          />
+          {loading ? (
+            <ActivityIndicator size={'large'} color={'#002857'} />
+          ) : (
+            <>
+              <Button
+                mode="contained"
+                style={styles.btnContainer}
+                buttonColor="#002857"
+                labelStyle={styles.loginText}
+                dark={true}
+                onPress={signIn}
+              >
+                Login
+              </Button>
+              <Button
+                mode="text"
+                style={styles.btnContainer}
+                labelStyle={styles.loginText}
+                onPress={() => navigation.navigate('Register')}
+              >
+                Create an Account
+              </Button>
+            </>
+          )}
+        </View>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 };
 
