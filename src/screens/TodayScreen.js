@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     color: '#002857',
     marginLeft: 10,
     marginBottom: 25,
-    flexGrow: 1,
     flexBasis: '50%',
   },
   welcomeStreak: {

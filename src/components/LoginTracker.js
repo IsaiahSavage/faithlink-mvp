@@ -71,7 +71,7 @@ const LoginTracker = () => {
         <Feather name={'check'} size={35} color={'#337AB7'} />
         <Feather name={'check'} size={35} color={'gray'} />
       </View> */}
-      <Text style={(styles.loginText, styles.loginBody)}>
+      <Text style={[styles.loginText, styles.loginBody]}>
         {state.userData.loginStreak}
       </Text>
     </View>
