@@ -5,6 +5,60 @@ import UpdateList from '../components/UpdateList';
 
 const UPDATES = [
   {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
+    header: 'Gina Lawhon',
+    timestamp: '1d ago',
+    content: 'Yeet',
+    id: '00000000',
+  },
+  {
     header: 'Isaiah Savage',
     timestamp: 'Today',
     content: 'This is an update',
