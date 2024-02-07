@@ -45,10 +45,11 @@ const GroupScreen = ({ route, navigation }) => {
             name={'book'}
             color={'#002857'}
             text={'Resources'}
-            navScreenName={'ViewSearchResultsScreen'}
+            navScreenName={'Resources'}
             navScreenArgs={{
-              search: 'Mental Health in the Church',
-              type: 'group',
+              screen: 'ViewSearchResultsScreen',
+              initial: false,
+              params: { search: 'Mental Health in the Church', type: 'group' },
             }}
           />
           <NavIconLabeled
