@@ -40,12 +40,12 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
       case 'media':
         return query(
           collection(FIRESTORE_DB, 'resources'),
-          where('mediaType', '==', search.toLowerCase().trim()),
+          where('mediaType', '==', route.params.search.toLowerCase().trim()),
         );
       case 'group':
         return query(
           collection(FIRESTORE_DB, 'resources'),
-          where('group', '==', search.toLowerCase().trim()),
+          where('group', '==', route.params.search.toLowerCase().trim()),
         );
       default:
         break;
@@ -107,9 +107,13 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
         <ResourceList
           resources={results}
           title={
-            type !== 'media'
-              ? `Search Results for '${route.params.search}'`
-              : `Media Results for '${route.params.search}'`
+            type === 'search'
+              ? `Search Results for "${search}"`
+              : type === 'tag'
+              ? `Resources tagged "${search}"`
+              : type === 'media'
+              ? `Resources of type "${route.params.search}"`
+              : `Resources for "${search}"`
           }
           containerStyles={styles.resourceListContainer}
         />

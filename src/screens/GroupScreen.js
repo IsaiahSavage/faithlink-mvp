@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import ActionIconLabeled from '../components/ActionIconLabeled';
+import NavIconLabeled from '../components/NavIconLabeled';
 import UpdateList from '../components/UpdateList';
 
 const UPDATES = [
@@ -25,7 +25,7 @@ const UPDATES = [
   },
 ];
 
-const GroupScreen = () => {
+const GroupScreen = ({ route, navigation }) => {
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.contentContainer}>
@@ -41,17 +41,22 @@ const GroupScreen = () => {
           </View>
         </View>
         <View style={styles.groupActionContainer}>
-          <ActionIconLabeled
+          <NavIconLabeled
             name={'book'}
             color={'#002857'}
             text={'Resources'}
+            navScreenName={'ViewSearchResultsScreen'}
+            navScreenArgs={{
+              search: 'Mental Health in the Church',
+              type: 'group',
+            }}
           />
-          <ActionIconLabeled
+          <NavIconLabeled
             name={'life-buoy'}
             color={'#002857'}
             text={'Prayer'}
           />
-          <ActionIconLabeled name={'user'} color={'#002857'} text={'Contact'} />
+          <NavIconLabeled name={'user'} color={'#002857'} text={'Contact'} />
         </View>
         <UpdateList
           updates={UPDATES}
