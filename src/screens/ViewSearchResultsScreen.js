@@ -23,10 +23,9 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
   // TODO: do we actually need refresh here?
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  }, []);
+    executeQuery();
+    setRefreshing(false);
+  }, [results]);
 
   const constructQuery = () => {
     switch (type) {
@@ -52,8 +51,7 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
     }
   };
 
-  // fetch search results from firestore
-  useEffect(() => {
+  const executeQuery = () => {
     setIsBusy((isBusy) => true);
 
     const searchQuery = constructQuery();
@@ -71,9 +69,9 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
       .finally(() => {
         setIsBusy((isBusy) => false);
       });
-  }, []);
+  };
 
-  return isBusy ? (
+  return isBusy && !refreshing ? (
     <ActivityIndicator animating={true} style={{ height: '100%' }} />
   ) : (
     <ScrollView
@@ -110,10 +108,10 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
             type === 'search'
               ? `Search Results for "${search}"`
               : type === 'tag'
-              ? `Resources tagged "${search}"`
+              ? `Resources tagged "${route.params.search}"`
               : type === 'media'
               ? `Resources of type "${route.params.search}"`
-              : `Resources for "${search}"`
+              : `Resources for "${route.params.search}"`
           }
           containerStyles={styles.resourceListContainer}
         />
