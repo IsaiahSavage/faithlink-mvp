@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import HeaderProfileButton from './components/HeaderProfileButton';
 import HeaderHome from './components/HeaderHome';
-import HomeStack from './stacks/HomeStack';
+import GroupScreen from './screens/GroupScreen'
 import ResourcesStack from './stacks/ResourcesStack';
 import PrayerStack from './stacks/PrayerStack';
 import ActivityStack from './stacks/ActivityStack';
@@ -39,7 +39,7 @@ const UserScreens = ({ route }) => {
     >
       <Tabs.Screen
         name="Home"
-        component={HomeStack}
+        component={GroupScreen}
         options={{
           ...defaultHeader,
           tabBarIcon: ({ focused }) => (
