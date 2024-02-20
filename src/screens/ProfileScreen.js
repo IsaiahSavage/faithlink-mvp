@@ -10,10 +10,6 @@ const LINKS = [
     text: 'Settings',
   },
   {
-    screen: 'Redirect',
-    text: 'Scan Into Chapel',
-  },
-  {
     screen: 'TermsOfUse',
     text: 'Terms of Use',
   },
