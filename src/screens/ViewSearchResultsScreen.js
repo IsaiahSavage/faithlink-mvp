@@ -124,16 +124,20 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
         style={styles.searchBarContainer}
         inputStyle={styles.searchBar}
         onIconPress={() => {
+          setSearch((search) => search.trim());
           navigation.navigate('ViewSearchResultsScreen', {
             search: search,
             type: 'search',
           });
+          executeQuery();
         }}
         onSubmitEditing={() => {
+          setSearch((search) => search.trim());
           navigation.navigate('ViewSearchResultsScreen', {
             search: search,
             type: 'search',
           });
+          executeQuery();
         }}
         // TODO: implement theme prop
       />
