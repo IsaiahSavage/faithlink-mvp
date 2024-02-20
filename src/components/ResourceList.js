@@ -21,7 +21,7 @@ const ResourceList = ({ resources, title, containerStyles }) => {
             key={resource.id}
           >
             <Update
-              header={resource.title}
+              header={resource.title.join(' ')}
               timestamp={new Date(
                 resource.createdOn.seconds * 1000,
               ).toLocaleDateString('en-us', {
