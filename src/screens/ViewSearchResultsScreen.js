@@ -7,9 +7,10 @@ import {
   Text,
 } from 'react-native';
 import { ActivityIndicator, Searchbar } from 'react-native-paper';
-import { query, collection, where, getDocs } from 'firebase/firestore';
+import { query, collection, where, or, getDocs } from 'firebase/firestore';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import ResourceList from '../components/ResourceList';
+import { useUserContext } from '../contexts/UserContext';
 
 const ViewSearchResultsScreen = ({ route, navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -20,7 +21,8 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
     type !== 'media' ? route.params.search : '',
   );
 
-  // TODO: do we actually need refresh here?
+  const { state } = useUserContext();
+
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     executeQuery();
@@ -30,7 +32,38 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
   const constructQuery = () => {
     switch (type) {
       case 'search':
-      // TODO: implement search
+        const queryRef = collection(FIRESTORE_DB, 'resources');
+        // construct a query that searches title for each word in search
+        const searchWords = search
+          .toLowerCase()
+          .trim()
+          .split(' ')
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+        let searchQuery = query(
+          queryRef,
+          where(`title`, 'array-contains-any', searchWords),
+        );
+        // add a query for tags
+        // TODO: is there a way to combine these results with the title search?
+        // searchQuery = query(
+        //   searchQuery,
+        //   where('tags', 'array-contains-any', searchWords),
+        // );
+
+        // enforce group-exclusive content
+        if (state.userData.group) {
+          searchQuery = query(
+            searchQuery,
+            or(
+              where('group', '==', state.userData.group),
+              where('group', '==', null),
+            ),
+          );
+        } else {
+          searchQuery = query(searchQuery, where('group', '==', null));
+        }
+
+        return searchQuery;
       case 'tag':
         return query(
           collection(FIRESTORE_DB, 'resources'),
@@ -71,6 +104,10 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
       });
   };
 
+  useEffect(() => {
+    executeQuery();
+  }, []);
+
   return isBusy && !refreshing ? (
     <ActivityIndicator animating={true} style={{ height: '100%' }} />
   ) : (
@@ -86,18 +123,21 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
         value={search}
         style={styles.searchBarContainer}
         inputStyle={styles.searchBar}
-        // TODO: implement search
         onIconPress={() => {
+          setSearch((search) => search.trim());
           navigation.navigate('ViewSearchResultsScreen', {
             search: search,
             type: 'search',
           });
+          executeQuery();
         }}
         onSubmitEditing={() => {
+          setSearch((search) => search.trim());
           navigation.navigate('ViewSearchResultsScreen', {
             search: search,
             type: 'search',
           });
+          executeQuery();
         }}
         // TODO: implement theme prop
       />
@@ -106,7 +146,7 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
           resources={results}
           title={
             type === 'search'
-              ? `Search Results for "${search}"`
+              ? `Search Results for "${route.params.search}"`
               : type === 'tag'
               ? `Resources tagged "${route.params.search}"`
               : type === 'media'

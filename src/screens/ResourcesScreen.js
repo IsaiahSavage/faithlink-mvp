@@ -46,8 +46,14 @@ const ResourcesScreen = ({ route, navigation }) => {
           value={search}
           style={styles.searchBarContainer}
           inputStyle={styles.searchBar}
-          onIconPress={() => handleSearchPressed(search)}
-          onSubmitEditing={() => handleSearchPressed(search)}
+          onIconPress={() => {
+            handleSearchPressed(search);
+            setSearch((search) => '');
+          }}
+          onSubmitEditing={() => {
+            handleSearchPressed(search);
+            setSearch((search) => '');
+          }}
           // TODO: add theme prop
         />
         <ScrollView horizontal style={styles.searchFilterContainer}>
