@@ -1,7 +1,7 @@
-import { StyleSheet, Text, useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import React, { useState, useEffect } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc } from 'firebase/firestore';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RenderHTML from 'react-native-render-html';
@@ -19,21 +19,20 @@ const ViewResourceScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     setIsBusy(true);
-    const resourceQuery = query(
-      collection(FIRESTORE_DB, 'resources'),
-      where('id', '==', resourceID),
-    );
-
-    getDocs(resourceQuery)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setResource((resource) => ({ ...resource, ...doc.data() }));
-        });
+    getDoc(doc(collection(FIRESTORE_DB, 'resources'), resourceID))
+      .then((doc) => {
+        if (doc.exists()) {
+          setResource(doc.data());
+        } else {
+          console.log('No such document!');
+        }
       })
       .catch((error) => {
-        console.log(error);
+        console.log('Error getting document:', error);
       })
-      .finally(() => setIsBusy(false));
+      .finally(() => {
+        setIsBusy(false);
+      });
   }, []);
 
   return isBusy ? (

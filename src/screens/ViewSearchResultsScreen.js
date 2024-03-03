@@ -11,6 +11,7 @@ import { query, collection, where, or, getDocs } from 'firebase/firestore';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import ResourceList from '../components/ResourceList';
 import { useUserContext } from '../contexts/UserContext';
+import { toProperCase } from '../utils/StringUtils';
 
 const ViewSearchResultsScreen = ({ route, navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -67,7 +68,7 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
       case 'tag':
         return query(
           collection(FIRESTORE_DB, 'resources'),
-          where('tags', 'array-contains', search.toLowerCase().trim()),
+          where('tags', 'array-contains', toProperCase(search).trim()),
         );
       case 'media':
         return query(
@@ -93,7 +94,10 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
       .then((querySnapshot) => {
         setResults((results) => []);
         querySnapshot.forEach((doc) => {
-          setResults((results) => [...results, doc.data()]);
+          setResults((results) => [
+            ...results,
+            { id: doc.id, data: doc.data() },
+          ]);
         });
       })
       .catch((error) => {
