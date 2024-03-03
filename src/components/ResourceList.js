@@ -41,7 +41,6 @@ const ResourceList = ({ resources, title, containerStyles }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
     alignSelf: 'flex-start',
     width: '100%',
   },
