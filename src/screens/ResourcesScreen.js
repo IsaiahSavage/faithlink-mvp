@@ -10,10 +10,12 @@ import {
   Pressable,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, FAB } from 'react-native-paper';
+import { useUserContext } from '../contexts/UserContext';
 
 const ResourcesScreen = ({ route, navigation }) => {
   const [search, setSearch] = useState('');
+  const { state } = useUserContext();
   // const navigation = useNavigation();
 
   const handleSearchPressed = (search) => {
@@ -38,115 +40,131 @@ const ResourcesScreen = ({ route, navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.wrapper}>
-      <View style={styles.container}>
-        <Searchbar
-          placeholder="Search for a resource"
-          onChangeText={setSearch}
-          value={search}
-          style={styles.searchBarContainer}
-          inputStyle={styles.searchBar}
-          onIconPress={() => {
-            handleSearchPressed(search);
-            setSearch((search) => '');
-          }}
-          onSubmitEditing={() => {
-            handleSearchPressed(search);
-            setSearch((search) => '');
-          }}
-          // TODO: add theme prop
+    <>
+      <ScrollView style={styles.wrapper}>
+        <View style={styles.container}>
+          <Searchbar
+            placeholder="Search for a resource"
+            onChangeText={setSearch}
+            value={search}
+            style={styles.searchBarContainer}
+            inputStyle={styles.searchBar}
+            onIconPress={() => {
+              handleSearchPressed(search);
+              setSearch((search) => '');
+            }}
+            onSubmitEditing={() => {
+              handleSearchPressed(search);
+              setSearch((search) => '');
+            }}
+            // TODO: add theme prop
+          />
+          <ScrollView horizontal style={styles.searchFilterContainer}>
+            {/* TODO: refactor into SearchFilter component once functionality is added */}
+            <TouchableOpacity
+              style={styles.searchFilter}
+              onPress={() => handleSearchFilterPressed('Prayer')}
+            >
+              <Text style={styles.searchFilterText}>Prayer</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.searchFilter}
+              onPress={() => handleSearchFilterPressed('Anxiety')}
+            >
+              <Text style={styles.searchFilterText}>Anxiety</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.searchFilter}
+              onPress={() => handleSearchFilterPressed('Faith')}
+            >
+              <Text style={styles.searchFilterText}>Faith</Text>
+            </TouchableOpacity>
+          </ScrollView>
+          {/* TODO: refactor into CardLarge component? */}
+          <View style={styles.featuredResource}>
+            <Pressable
+              onPress={() =>
+                navigation.navigate('ViewResourceScreen', {
+                  resourceID: 'evWeQo5anF2AK2yPF99J',
+                })
+              }
+            >
+              <Image style={styles.featuredResourceImage} />
+              <Text style={styles.featuredResourceText}>
+                Conquering Your Fears
+              </Text>
+            </Pressable>
+          </View>
+          {/* TODO: refactor into Gallery and GalleryItem components? */}
+          <View style={styles.resourceGallery}>
+            <TouchableOpacity
+              style={styles.resourceGalleryItemContainer}
+              onPress={() => handleMediaFilterPressed('article')}
+            >
+              <LinearGradient
+                colors={['#FDBB2D', '#3A1C71']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.resourceGalleryItemBackground}
+              >
+                <Text style={styles.resourceGalleryItemText}>Articles</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.resourceGalleryItemContainer}
+              onPress={() => handleMediaFilterPressed('video')}
+            >
+              <LinearGradient
+                colors={['#22c1c3', '#fdbb2d']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.resourceGalleryItemBackground}
+              >
+                <Text style={styles.resourceGalleryItemText}>Videos</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.resourceGalleryItemContainer}
+              onPress={() => handleMediaFilterPressed('image')}
+            >
+              <LinearGradient
+                colors={['#FC466B', '#3F5EFB']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.resourceGalleryItemBackground}
+              >
+                <Text style={styles.resourceGalleryItemText}>Images</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.resourceGalleryItemContainer}
+              onPress={() => handleMediaFilterPressed('audio')}
+            >
+              <LinearGradient
+                colors={['#f8ff00', '#3ad59f']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.resourceGalleryItemBackground}
+              >
+                <Text style={styles.resourceGalleryItemText}>Audio</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+      {state.userData.groupID &&
+      (state.userData.roleType === 'admin' ||
+        state.userData.roleType === 'leader') ? (
+        <FAB
+          icon={'plus'}
+          style={styles.fab}
+          customSize={75}
+          onPress={() => navigation.navigate('CreateResourceScreen')}
         />
-        <ScrollView horizontal style={styles.searchFilterContainer}>
-          {/* TODO: refactor into SearchFilter component once functionality is added */}
-          <TouchableOpacity
-            style={styles.searchFilter}
-            onPress={() => handleSearchFilterPressed('prayer')}
-          >
-            <Text style={styles.searchFilterText}>Prayer</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.searchFilter}
-            onPress={() => handleSearchFilterPressed('anxiety')}
-          >
-            <Text style={styles.searchFilterText}>Anxiety</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.searchFilter}
-            onPress={() => handleSearchFilterPressed('faith')}
-          >
-            <Text style={styles.searchFilterText}>Faith</Text>
-          </TouchableOpacity>
-        </ScrollView>
-        {/* TODO: refactor into CardLarge component? */}
-        <View style={styles.featuredResource}>
-          <Pressable
-            onPress={() =>
-              navigation.navigate('ViewResourceScreen', { resourceID: 1 })
-            }
-          >
-            <Image style={styles.featuredResourceImage} />
-            <Text style={styles.featuredResourceText}>
-              Conquering Your Fears
-            </Text>
-          </Pressable>
-        </View>
-        {/* TODO: refactor into Gallery and GalleryItem components? */}
-        <View style={styles.resourceGallery}>
-          <TouchableOpacity
-            style={styles.resourceGalleryItemContainer}
-            onPress={() => handleMediaFilterPressed('article')}
-          >
-            <LinearGradient
-              colors={['#FDBB2D', '#3A1C71']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.resourceGalleryItemBackground}
-            >
-              <Text style={styles.resourceGalleryItemText}>Articles</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.resourceGalleryItemContainer}
-            onPress={() => handleMediaFilterPressed('video')}
-          >
-            <LinearGradient
-              colors={['#22c1c3', '#fdbb2d']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.resourceGalleryItemBackground}
-            >
-              <Text style={styles.resourceGalleryItemText}>Videos</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.resourceGalleryItemContainer}
-            onPress={() => handleMediaFilterPressed('image')}
-          >
-            <LinearGradient
-              colors={['#FC466B', '#3F5EFB']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.resourceGalleryItemBackground}
-            >
-              <Text style={styles.resourceGalleryItemText}>Images</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.resourceGalleryItemContainer}
-            onPress={() => handleMediaFilterPressed('audio')}
-          >
-            <LinearGradient
-              colors={['#f8ff00', '#3ad59f']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.resourceGalleryItemBackground}
-            >
-              <Text style={styles.resourceGalleryItemText}>Audio</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 
@@ -221,6 +239,15 @@ const styles = StyleSheet.create({
   resourceGalleryItemText: {
     color: 'white',
     fontSize: 20,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    borderRadius: 60,
+    color: '#002857',
+    backgroundColor: '#E8E8E8',
   },
 });
 

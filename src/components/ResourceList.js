@@ -21,15 +21,15 @@ const ResourceList = ({ resources, title, containerStyles }) => {
             key={resource.id}
           >
             <Update
-              header={resource.title.join(' ')}
+              header={resource.data.title.join(' ')}
               timestamp={new Date(
-                resource.createdOn.seconds * 1000,
+                resource.data.createdOn.seconds * 1000,
               ).toLocaleDateString('en-us', {
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric',
               })}
-              content={resource.group ? 'Group-exclusive Content' : ''}
+              content={resource.data.group ? 'Group-exclusive Content' : ''}
             />
           </TouchableOpacity>
         ))}
@@ -41,8 +41,8 @@ const ResourceList = ({ resources, title, containerStyles }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
     alignSelf: 'flex-start',
+    width: '100%',
   },
   title: {
     fontWeight: '500',
