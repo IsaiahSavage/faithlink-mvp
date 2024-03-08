@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 import { ActivityIndicator, Searchbar } from 'react-native-paper';
-import { query, collection, where, or, getDocs } from 'firebase/firestore';
+import { query, collection, where, or, getDocs, doc } from 'firebase/firestore';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import ResourceList from '../components/ResourceList';
 import { useUserContext } from '../contexts/UserContext';
@@ -39,7 +39,7 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
           .toLowerCase()
           .trim()
           .split(' ')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+          .map((word) => toProperCase(word));
         let searchQuery = query(
           queryRef,
           where(`title`, 'array-contains-any', searchWords),
@@ -52,13 +52,14 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
         // );
 
         // enforce group-exclusive content
-        if (state.userData.group) {
+        if (Object.hasOwn(state.userData, 'groupID')) {
+          const groupRef = doc(
+            FIRESTORE_DB,
+            `groups/${state.userData.groupID}`,
+          );
           searchQuery = query(
             searchQuery,
-            or(
-              where('group', '==', state.userData.group),
-              where('group', '==', null),
-            ),
+            or(where('group', '==', groupRef), where('group', '==', null)),
           );
         } else {
           searchQuery = query(searchQuery, where('group', '==', null));
@@ -150,12 +151,12 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
           resources={results}
           title={
             type === 'search'
-              ? `Search Results for "${route.params.search}"`
+              ? `Search Results for "${route.params.search.trim()}"`
               : type === 'tag'
-              ? `Resources tagged "${route.params.search}"`
+              ? `Resources tagged "${route.params.search.trim()}"`
               : type === 'media'
-              ? `Resources of type "${route.params.search}"`
-              : `Resources for "${route.params.search}"`
+              ? `Resources of type "${route.params.search.trim()}"`
+              : `Resources for "${route.params.search.trim()}"`
           }
           containerStyles={styles.resourceListContainer}
         />
