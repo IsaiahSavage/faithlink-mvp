@@ -6,12 +6,10 @@ import {
   Text,
   RefreshControl,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import NavIconLabeled from '../components/NavIconLabeled';
 import UpdateList from '../components/UpdateList';
 import { useUserContext } from '../contexts/UserContext';
 import { Button, TextInput, Portal, Provider, Modal } from 'react-native-paper';
-import { useFetchGroupInfo } from '../../firebase/fetchAPI';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import GroupContactModal from '../components/GroupContactModal';
@@ -41,9 +39,9 @@ const GroupScreen = ({ route, navigation }) => {
     }
   };
 
-  const getGroupInfo = async () => {
+  const getGroupInfo = async (groupID) => {
     try {
-      const docRef = doc(FIRESTORE_DB, `groups/${state.userData.groupID}`);
+      const docRef = doc(FIRESTORE_DB, `groups/${groupID}`);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setGroupInfo((groupInfo) => docSnap.data());
@@ -57,11 +55,11 @@ const GroupScreen = ({ route, navigation }) => {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    getGroupInfo().finally(() => setRefreshing(false));
+    getGroupInfo(state.userData.groupID).finally(() => setRefreshing(false));
   }, []);
 
   useEffect(() => {
-    getGroupInfo();
+    getGroupInfo(state.userData.groupID);
   }, []);
 
   if (
@@ -138,19 +136,25 @@ const GroupScreen = ({ route, navigation }) => {
             </View>
           </View>
           <View style={styles.groupActionContainer}>
-            <ActionIconLabeled
+            <NavIconLabeled
               name={'book'}
               color={'#002857'}
               text={'Resources'}
-              onPress={() => navigation.navigate('Resources')}
+              navScreenName={'ViewSearchResultsScreen'}
+              navScreenArgs={{
+                search: groupInfo.name,
+                type: 'group',
+                initial: false,
+              }}
             />
-            <ActionIconLabeled
+            <NavIconLabeled
               name={'life-buoy'}
               color={'#002857'}
               text={'Prayer'}
-              onPress={() => navigation.navigate('Prayer')}
+              onPress={() => alert('Prayer functionality coming soon!')}
+              navScreenName={'PrayerScreen'}
             />
-            <ActionIconLabeled
+            <NavIconLabeled
               name={'user'}
               color={'#002857'}
               text={'Contact'}
