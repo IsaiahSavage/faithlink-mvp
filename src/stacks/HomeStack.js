@@ -9,12 +9,12 @@ const HomeStackScreen = createMaterialTopTabNavigator();
 const HomeStack = () => {
   return (
     <HomeStackScreen.Navigator
-      initialRouteName="Today"
+      initialRouteName="Group" //Changed from "Today" -> "Group"
       initialLayout={{
         width: Dimensions.get('window').width,
       }}
-      screenOptions={{ tabBarStyle: { display: 'none' } }}
-    >
+      screenOptions={{ tabBarStyle: { display: 'none' } }} >
+        
       <HomeStackScreen.Screen name={'Today'}>
         {() => <TodayScreen />}
       </HomeStackScreen.Screen>
