@@ -1,11 +1,23 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 
-const ActionIconLabeled = ({ name, color, text, onPress }) => {
+const NavIconLabeled = ({
+  name,
+  color,
+  text,
+  navScreenName,
+  navScreenArgs,
+}) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.actionContainer}>
-      <Pressable style={styles.actionButton} onPress={onPress}>
+      <Pressable
+        style={styles.actionButton}
+        onPress={() => navigation.navigate(navScreenName, navScreenArgs)}
+      >
         <Feather name={name} size={40} color={color} />
       </Pressable>
       <Text style={styles.actionText}>{text}</Text>
@@ -30,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActionIconLabeled;
+export default NavIconLabeled;

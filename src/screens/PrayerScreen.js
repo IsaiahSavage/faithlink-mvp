@@ -61,7 +61,9 @@ const PrayerScreen = () => {
           Start Prayer
         </LinkButton>
       </View>
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{ width: 350, alignItems: 'flex-start' }}
+      >
         <UpdateList
           updates={REQUESTS}
           title={'Requests'}
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
   wrapper: {},
   contentContainer: {
     flex: 1,
+    marginHorizontal: 10,
   },
   prayerTimerContainer: {
     minWidth: 350,
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     color: '#337AB7',
   },
   requestListContainer: {
-    marginHorizontal: 10,
+    width: '100%',
   },
 });
 

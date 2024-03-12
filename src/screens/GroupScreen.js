@@ -7,7 +7,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import ActionIconLabeled from '../components/ActionIconLabeled';
+import NavIconLabeled from '../components/NavIconLabeled';
 import UpdateList from '../components/UpdateList';
 import { useUserContext } from '../contexts/UserContext';
 import { Button, TextInput, Portal, Provider, Modal } from 'react-native-paper';
@@ -16,7 +16,7 @@ import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import GroupContactModal from '../components/GroupContactModal';
 
-const GroupScreen = () => {
+const GroupScreen = ({ route, navigation }) => {
   const { state, dispatch } = useUserContext();
   const [groupID, setGroupID] = useState(
     state.userData.hasOwnProperty('groupID') ? state.userData.groupID : '',
@@ -28,8 +28,6 @@ const GroupScreen = () => {
 
   const showGroupContactModal = () => setIsGroupContactModalVisible(true);
   const hideGroupContactModal = () => setIsGroupContactModalVisible(false);
-
-  const navigation = useNavigation();
 
   const updateGroupID = async () => {
     try {
