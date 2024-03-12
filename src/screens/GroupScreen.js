@@ -27,21 +27,14 @@ const GroupScreen = () => {
     useState(false);
 
   const showGroupContactModal = () => setIsGroupContactModalVisible(true);
-
   const hideGroupContactModal = () => setIsGroupContactModalVisible(false);
 
   const navigation = useNavigation();
-  const group = async () => await useFetchGroupInfo(groupID);
-
-  useEffect(() => {
-    getGroupInfo();
-  }, []);
 
   const updateGroupID = async () => {
     try {
-      if (group) {
-        // TODO: abstract into separate post request file
-        const docRef = doc(FIRESTORE_DB, 'users', state.userID);
+      if (groupID !== '' && groupID !== null) {
+        const docRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
         await setDoc(docRef, { groupID: groupID }, { merge: true });
         dispatch({ type: 'SET_GROUP_ID', payload: groupID });
       }
@@ -50,14 +43,9 @@ const GroupScreen = () => {
     }
   };
 
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    getGroupInfo().finally(() => setRefreshing(false));
-  }, []);
-
   const getGroupInfo = async () => {
     try {
-      const docRef = doc(FIRESTORE_DB, 'groups', groupID);
+      const docRef = doc(FIRESTORE_DB, `groups/${state.userData.groupID}`);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setGroupInfo((groupInfo) => docSnap.data());
@@ -69,7 +57,19 @@ const GroupScreen = () => {
     }
   };
 
-  if (!state.userData.groupID)
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    getGroupInfo().finally(() => setRefreshing(false));
+  }, []);
+
+  useEffect(() => {
+    getGroupInfo();
+  }, []);
+
+  if (
+    !state.userData.hasOwnProperty('groupID') ||
+    state.userData.groupID === ''
+  ) {
     return (
       <View style={[styles.contentContainer, { justifyContent: 'center' }]}>
         <Text>You are not in a group.</Text>
@@ -93,6 +93,7 @@ const GroupScreen = () => {
         </Button>
       </View>
     );
+  }
 
   return (
     <Provider>
