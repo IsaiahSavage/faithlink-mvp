@@ -144,9 +144,11 @@ const GroupScreen = ({ route, navigation }) => {
               navScreenName={'Resources'}
               navScreenArgs={{
                 screen: 'ViewSearchResultsScreen',
-                search: groupInfo ? groupInfo.name : 'unknown',
-                type: 'group',
-                initial: false,
+                params: {
+                  search: groupInfo ? groupInfo.name : 'unknown',
+                  type: 'group',
+                  initial: false,
+                },
               }}
             />
             <NavIconLabeled
