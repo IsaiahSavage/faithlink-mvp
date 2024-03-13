@@ -42,12 +42,13 @@ const GroupScreen = ({ route, navigation }) => {
   const getGroupInfo = async (groupID) => {
     try {
       const docRef = doc(FIRESTORE_DB, `groups/${groupID}`);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setGroupInfo((groupInfo) => docSnap.data());
-      } else {
-        console.log('No such document!');
-      }
+      getDoc(docRef)
+        .then((docSnap) => {
+          setGroupInfo(docSnap.data());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +61,7 @@ const GroupScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     getGroupInfo(state.userData.groupID);
-  }, []);
+  }, [state.userData.groupID]);
 
   if (
     !state.userData.hasOwnProperty('groupID') ||
@@ -102,7 +103,7 @@ const GroupScreen = ({ route, navigation }) => {
         <View style={styles.contentContainer}>
           <View style={styles.groupSummaryContainer}>
             <Text style={styles.groupName}>
-              {groupInfo ? groupInfo.name : 'Error'}
+              {groupInfo ? groupInfo.name : 'Loading...'}
             </Text>
             <View style={styles.meetingInfoContainer}>
               <Text style={[styles.meetingInfoText, styles.meetingInfoHeader]}>
@@ -117,7 +118,7 @@ const GroupScreen = ({ route, navigation }) => {
                       month: 'short',
                       day: 'numeric',
                     })
-                  : 'Error'}
+                  : ''}
               </Text>
               <Text style={styles.meetingInfoText}>
                 {groupInfo
@@ -128,10 +129,10 @@ const GroupScreen = ({ route, navigation }) => {
                       minute: '2-digit',
                       hour12: true,
                     })
-                  : 'Error'}
+                  : ''}
               </Text>
               <Text style={styles.meetingInfoText}>
-                {groupInfo ? groupInfo.nextMeetingLocation : 'Error'}
+                {groupInfo ? groupInfo.nextMeetingLocation : ''}
               </Text>
             </View>
           </View>
@@ -140,9 +141,10 @@ const GroupScreen = ({ route, navigation }) => {
               name={'book'}
               color={'#002857'}
               text={'Resources'}
-              navScreenName={'ViewSearchResultsScreen'}
+              navScreenName={'Resources'}
               navScreenArgs={{
-                search: groupInfo.name,
+                screen: 'ViewSearchResultsScreen',
+                search: groupInfo ? groupInfo.name : 'unknown',
                 type: 'group',
                 initial: false,
               }}
