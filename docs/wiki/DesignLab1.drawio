@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-13T14:12:21.648Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="by6-Kxq6m1rhRtTtCcwO" version="24.0.0" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2024-03-13T18:04:13.217Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="JVzjumCk5WAwla2zQMW2" version="24.0.0" type="github" pages="3">
   <diagram name="Deployment" id="5f0bae14-7c28-e335-631c-24af17079c00">
     <mxGraphModel dx="1750" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -721,7 +721,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="wvMsOmUtoN0JWNwwnEJ5" name="Sequence">
-    <mxGraphModel dx="2333" dy="1391" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1105" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1012,7 +1012,7 @@
           <mxGeometry x="3410" y="120" width="20" height="320" as="geometry" />
         </mxCell>
         <mxCell id="CVRHjsdn6GCDd32ctzXy-54" value=":FaithLink&lt;div&gt;&amp;lt;&amp;lt;UI&amp;gt;&amp;gt;&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="3530" y="120" width="100" height="320" as="geometry" />
+          <mxGeometry x="3590" y="120" width="100" height="320" as="geometry" />
         </mxCell>
         <mxCell id="CVRHjsdn6GCDd32ctzXy-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=0;" edge="1" parent="CVRHjsdn6GCDd32ctzXy-54" source="CVRHjsdn6GCDd32ctzXy-57" target="CVRHjsdn6GCDd32ctzXy-57">
           <mxGeometry relative="1" as="geometry">
@@ -1060,9 +1060,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="CVRHjsdn6GCDd32ctzXy-62" value="submitSearch(search, type)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CVRHjsdn6GCDd32ctzXy-61">
+        <mxCell id="CVRHjsdn6GCDd32ctzXy-62" value="ViewSearchResultsScreen(search, type)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CVRHjsdn6GCDd32ctzXy-61">
           <mxGeometry x="-0.6001" relative="1" as="geometry">
-            <mxPoint x="39" as="offset" />
+            <mxPoint x="66" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="CVRHjsdn6GCDd32ctzXy-63" value=":Doc" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
