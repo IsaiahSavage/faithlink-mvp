@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import HeaderProfileButton from './components/HeaderProfileButton';
 import HeaderHome from './components/HeaderHome';
-import GroupScreen from './screens/GroupScreen'
+import GroupScreen from './screens/GroupScreen';
 import ResourcesStack from './stacks/ResourcesStack';
 import PrayerStack from './stacks/PrayerStack';
 import ActivityStack from './stacks/ActivityStack';
@@ -65,7 +65,8 @@ const UserScreens = ({ route }) => {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* See https://github.com/IsaiahSavage/mvnu-spiritual-life-app/issues/41: Disabled for MVP */}
+      {/* <Tabs.Screen
         name="Prayer"
         component={PrayerStack}
         options={{
@@ -78,7 +79,7 @@ const UserScreens = ({ route }) => {
             />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="Activity"
         component={ActivityStack}
