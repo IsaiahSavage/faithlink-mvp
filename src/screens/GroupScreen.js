@@ -9,12 +9,20 @@ import {
 import NavIconLabeled from '../components/NavIconLabeled';
 import UpdateList from '../components/UpdateList';
 import { useUserContext } from '../contexts/UserContext';
-import { Button, TextInput, Portal, Provider, Modal } from 'react-native-paper';
+import {
+  Button,
+  TextInput,
+  Portal,
+  Provider,
+  Modal,
+  FAB,
+} from 'react-native-paper';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import GroupContactModal from '../components/GroupContactModal';
+import { useNavigation } from '@react-navigation/native';
 
-const GroupScreen = ({ route, navigation }) => {
+const GroupScreen = ({ route }) => {
   const { state, dispatch } = useUserContext();
   const [groupID, setGroupID] = useState(
     state.userData.hasOwnProperty('groupID') ? state.userData.groupID : '',
@@ -23,6 +31,8 @@ const GroupScreen = ({ route, navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
   const [isGroupContactModalVisible, setIsGroupContactModalVisible] =
     useState(false);
+
+  const navigation = useNavigation();
 
   const showGroupContactModal = () => setIsGroupContactModalVisible(true);
   const hideGroupContactModal = () => setIsGroupContactModalVisible(false);
@@ -57,7 +67,7 @@ const GroupScreen = ({ route, navigation }) => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     getGroupInfo(state.userData.groupID).finally(() => setRefreshing(false));
-  }, []);
+  }, [state.userData.groupID, refreshing, groupInfo]);
 
   useEffect(() => {
     getGroupInfo(state.userData.groupID);
@@ -193,6 +203,20 @@ const GroupScreen = ({ route, navigation }) => {
           Leave Group
         </Button>
       </ScrollView>
+      {state.userData.groupID &&
+      (state.userData.roleType === 'admin' ||
+        state.userData.roleType === 'leader') ? (
+        <FAB
+          icon={'plus'}
+          style={styles.fab}
+          customSize={75}
+          onPress={() => {
+            navigation.navigate('AddUpdateScreen');
+          }}
+        />
+      ) : (
+        <></>
+      )}
     </Provider>
   );
 };
@@ -242,6 +266,15 @@ const styles = StyleSheet.create({
   leaveGroupButton: {
     width: '35%',
     alignSelf: 'center',
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    borderRadius: 60,
+    color: '#002857',
+    backgroundColor: '#E8E8E8',
   },
 });
 
