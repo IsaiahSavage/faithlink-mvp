@@ -79,7 +79,11 @@ const ViewSearchResultsScreen = ({ route, navigation }) => {
       case 'group':
         return query(
           collection(FIRESTORE_DB, 'resources'),
-          where('group', '==', route.params.search.toLowerCase().trim()),
+          where(
+            'group',
+            '==',
+            doc(FIRESTORE_DB, `groups/${state.userData.groupID}`),
+          ),
         );
       default:
         break;
