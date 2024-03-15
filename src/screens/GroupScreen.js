@@ -39,11 +39,11 @@ const GroupScreen = ({ route }) => {
 
   const updateGroupID = async () => {
     try {
-      if (groupID !== '' && groupID !== null) {
-        const docRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
-        await setDoc(docRef, { groupID: groupID }, { merge: true });
-        dispatch({ type: 'SET_GROUP_ID', payload: groupID });
-      }
+      const docRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
+      await setDoc(docRef, { groupID: groupID }, { merge: true });
+      // TODO: update group info in DB
+
+      dispatch({ type: 'SET_GROUP_ID', payload: groupID });
     } catch (error) {
       console.log(error);
     }
@@ -197,6 +197,9 @@ const GroupScreen = ({ route }) => {
         <Button
           style={styles.leaveGroupButton}
           onPress={() => {
+            // setGroupID((groupID) => '');
+            // updateGroupID().catch((error) => alert(`Error: ${error}`));
+            // alert('You have left the group.');
             alert('Leave group functionality coming soon!');
           }}
         >
@@ -266,6 +269,7 @@ const styles = StyleSheet.create({
   leaveGroupButton: {
     width: '35%',
     alignSelf: 'center',
+    marginVertical: 10,
   },
   fab: {
     position: 'absolute',
