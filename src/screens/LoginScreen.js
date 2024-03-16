@@ -50,9 +50,9 @@ const LoginScreen = ({ navigation }) => {
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
-          onSubmitEditing={() => {
-            this.PasswordInput.focus();
-          }}
+          // onSubmitEditing={() => {
+          //   this.PasswordInput.focus();
+          // }}
           blurOnSubmit={false}
         />
         <TextInput
@@ -64,9 +64,9 @@ const LoginScreen = ({ navigation }) => {
           textContentType="password"
           secureTextEntry={hidePass ? true : false}
           autoCorrect={false}
-          ref={(input) => {
-            this.PasswordInput = input;
-          }}
+          // ref={(input) => {
+          //   this.PasswordInput = input;
+          // }}
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           right={
