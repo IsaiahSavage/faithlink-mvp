@@ -18,7 +18,13 @@ import {
   FAB,
 } from 'react-native-paper';
 import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import GroupContactModal from '../components/GroupContactModal';
 import { useNavigation } from '@react-navigation/native';
 
@@ -37,11 +43,14 @@ const GroupScreen = ({ route }) => {
   const showGroupContactModal = () => setIsGroupContactModalVisible(true);
   const hideGroupContactModal = () => setIsGroupContactModalVisible(false);
 
-  const updateGroupID = async () => {
+  const updateGroupID = async (isJoining) => {
     try {
       const docRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
-      await setDoc(docRef, { groupID: groupID }, { merge: true });
+      await updateDoc(docRef, { groupID: groupID });
       // TODO: update group info in DB
+      await updateDoc(doc(FIRESTORE_DB, `/groups/${groupID}`), {
+        members: isJoining ? arrayUnion(docRef) : arrayRemove(docRef),
+      });
 
       dispatch({ type: 'SET_GROUP_ID', payload: groupID });
     } catch (error) {
@@ -92,7 +101,7 @@ const GroupScreen = ({ route }) => {
           style={{}}
           onPress={() => {
             groupID !== '' && groupID !== null
-              ? updateGroupID()
+              ? updateGroupID(true).catch((error) => alert(`Error: ${error}`))
               : alert('Error: please enter group ID');
           }}
         >
@@ -193,14 +202,14 @@ const GroupScreen = ({ route }) => {
             </Text>
           )}
         </View>
-        {/* TODO: Add leave group functionality */}
         <Button
           style={styles.leaveGroupButton}
           onPress={() => {
-            // setGroupID((groupID) => '');
-            // updateGroupID().catch((error) => alert(`Error: ${error}`));
-            // alert('You have left the group.');
-            alert('Leave group functionality coming soon!');
+            setGroupID((groupID) => '');
+            updateGroupID(false)
+              .catch((error) => alert(`Error: ${error}`))
+              .finally(() => dispatch({ type: 'SET_GROUP_ID', payload: '' }));
+            alert('You have left the group.');
           }}
         >
           Leave Group
