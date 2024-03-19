@@ -33,4 +33,13 @@ export const defaultHeaderWithBackButton = {
   },
 };
 
+export const registerHeaderWithBackButton = {
+  headerShown: true, 
+  headerTitleStyle: {
+    fontSize: 25,
+    color: '#337AB7',
+    fontWeight: 'normal',
+  },
+};
+
 //#endregion Header Components

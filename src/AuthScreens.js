@@ -1,5 +1,6 @@
 import React from 'react';
 import { noHeader } from './settings';
+import { registerHeaderWithBackButton } from './settings';
 import { Stack } from './Stack';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
@@ -11,7 +12,7 @@ const AuthScreens = () => {
       <Stack.Screen
         name={'Register'}
         component={RegisterScreen}
-        options={noHeader}
+        options={registerHeaderWithBackButton}
       />
     </Stack.Navigator>
   );
