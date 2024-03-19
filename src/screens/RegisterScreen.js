@@ -50,6 +50,7 @@ const RegisterScreen = () => {
         first: firstName,
         last: lastName,
         email: email,
+        roleType: 'user',
       });
 
       console.log('Document written with ID: ', docRef.id);
