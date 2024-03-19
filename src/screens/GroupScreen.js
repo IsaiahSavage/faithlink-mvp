@@ -50,7 +50,10 @@ const GroupScreen = ({ route }) => {
       await updateDoc(groupDocRef, {
         members: isJoining ? arrayUnion(userDocRef) : arrayRemove(userDocRef),
       });
-      await updateDoc(userDocRef, { groupID: groupID });
+      await updateDoc(userDocRef, {
+        groupID: groupID,
+        roleType: isJoining ? 'member' : 'user',
+      });
 
       dispatch({ type: 'SET_GROUP_ID', payload: groupID });
     } catch (error) {
