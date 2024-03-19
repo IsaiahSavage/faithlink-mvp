@@ -45,16 +45,23 @@ const GroupScreen = ({ route }) => {
 
   const updateGroupID = async (isJoining) => {
     try {
-      const docRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
-      await updateDoc(docRef, { groupID: groupID });
-      // TODO: update group info in DB
-      await updateDoc(doc(FIRESTORE_DB, `/groups/${groupID}`), {
-        members: isJoining ? arrayUnion(docRef) : arrayRemove(docRef),
+      const userDocRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
+      const groupDocRef = doc(FIRESTORE_DB, `/groups/${groupID}`);
+      await updateDoc(groupDocRef, {
+        members: isJoining ? arrayUnion(userDocRef) : arrayRemove(userDocRef),
       });
+      await updateDoc(userDocRef, { groupID: groupID });
 
       dispatch({ type: 'SET_GROUP_ID', payload: groupID });
     } catch (error) {
-      console.log(error);
+      if (error.code === 'not-found') {
+        throw new Error(
+          'Group does not exist. Please enter a valid group ID.',
+          {
+            code: 'group-not-found',
+          },
+        );
+      }
     }
   };
 
@@ -101,7 +108,11 @@ const GroupScreen = ({ route }) => {
           style={{}}
           onPress={() => {
             groupID !== '' && groupID !== null
-              ? updateGroupID(true).catch((error) => alert(`Error: ${error}`))
+              ? updateGroupID(true).catch((error) =>
+                  error.code === 'group-not-found'
+                    ? alert(error.message)
+                    : alert(`${error}`),
+                )
               : alert('Error: please enter group ID');
           }}
         >
