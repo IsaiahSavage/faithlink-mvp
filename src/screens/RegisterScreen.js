@@ -79,9 +79,13 @@ const RegisterScreen = () => {
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
-          ref={(input) => {
-            this.FirstNameInput = input;
-          }}
+          ref={
+            Platform.OS === 'web'
+              ? null
+              : (input) => {
+                  this.FirstNameInput = input;
+                }
+          }
           onSubmitEditing={() => {
             this.LastNameInput.focus();
           }}
@@ -98,9 +102,13 @@ const RegisterScreen = () => {
           textContentType="familyName"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
-          ref={(input) => {
-            this.LastNameInput = input;
-          }}
+          ref={
+            Platform.OS === 'web'
+              ? null
+              : (input) => {
+                  this.LastNameInput = input;
+                }
+          }
           onSubmitEditing={() => {
             this.EmailInput.focus();
           }}
@@ -117,9 +125,13 @@ const RegisterScreen = () => {
           textContentType="emailAddress"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
-          ref={(input) => {
-            this.EmailInput = input;
-          }}
+          ref={
+            Platform.OS === 'web'
+              ? null
+              : (input) => {
+                  this.EmailInput = input;
+                }
+          }
           onSubmitEditing={() => {
             this.PasswordInput.focus();
           }}
@@ -135,9 +147,13 @@ const RegisterScreen = () => {
           secureTextEntry={hidePass ? true : false}
           autoCorrect={false}
           returnKeyType="next"
-          ref={(input) => {
-            this.PasswordInput = input;
-          }}
+          ref={
+            Platform.OS === 'web'
+              ? null
+              : (input) => {
+                  this.PasswordInput = input;
+                }
+          }
           onSubmitEditing={() => {
             this.PasswordConfirmationInput.focus();
           }}
@@ -159,9 +175,13 @@ const RegisterScreen = () => {
           textContentType="password"
           secureTextEntry={hidePassConfirmation ? true : false}
           autoCorrect={false}
-          ref={(input) => {
-            this.PasswordConfirmationInput = input;
-          }}
+          ref={
+            Platform.OS === 'web'
+              ? null
+              : (input) => {
+                  this.PasswordConfirmationInput = input;
+                }
+          }
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           right={
