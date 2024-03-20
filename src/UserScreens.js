@@ -13,6 +13,7 @@ import ProfileStack from './stacks/ProfileStack';
 import { IconButton } from 'react-native-paper';
 import { FIREBASE_AUTH } from '../firebase/firebaseConfig';
 import { useUserContext } from './contexts/UserContext';
+import HomeStack from './stacks/HomeStack';
 
 const UserScreens = ({ route }) => {
   const { state, dispatch } = useUserContext();
@@ -39,7 +40,7 @@ const UserScreens = ({ route }) => {
     >
       <Tabs.Screen
         name="Home"
-        component={GroupScreen}
+        component={HomeStack}
         options={{
           ...defaultHeader,
           tabBarIcon: ({ focused }) => (
