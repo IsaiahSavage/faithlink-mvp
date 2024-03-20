@@ -67,7 +67,7 @@ const RegisterScreen = () => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <Text style={styles.title}>Register</Text>
+      {/* <Text style={styles.title}>Register</Text> */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
