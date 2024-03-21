@@ -1,137 +1,58 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import LinkButton from '../components/LinkButton';
-import { Button } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
-
-const LINKS = [
-  {
-    screen: 'Settings',
-    text: 'Settings',
-  },
-  {
-    screen: 'TermsOfUse',
-    text: 'Terms of Use',
-  },
-  {
-    screen: 'PrivacyPolicy',
-    text: 'Privacy Policy',
-  },
-  {
-    screen: 'ContactSupport',
-    text: 'Contact Support',
-  },
-];
+import React, { useState, useEffect } from 'react';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
+import LoginTracker from '../components/LoginTracker';
+import HabitTracker from '../components/HabitTracker';
+import { useUserContext } from '../contexts/UserContext';
 
 const ProfileScreen = () => {
-  const navigation = useNavigation();
+  const { state, dispatch } = useUserContext();
 
   return (
-    <View style={styles.contentContainer}>
-      <View style={styles.loginStatsContainer}>
-        <Text style={styles.loginStatsStreak}>Streak: 128</Text>
-        <Text style={styles.loginStatsWeek}>This week: 6</Text>
+    <ScrollView style={styles.wrapper}>
+      <View style={styles.contentContainer}>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.welcomeText}>
+            Welcome,{' '}
+            {Object.hasOwn(state.userData, 'first')
+              ? state.userData.first
+              : 'User'}
+            !
+          </Text>
+          <LoginTracker style={styles.welcomeStreak} />
+        </View>
+        <HabitTracker />
       </View>
-      <View style={styles.settingsContainer}>
-        {/* 
-        // This is in case we switch back to a 2-column layout with smaller button option
-        <FlatList
-          data={LINKS.filter((e) => e.size === 'small')}
-          renderItem={({ item }) => (
-            <LinkButton
-              to={{ screen: `${item.screen}` }}
-              containerStyles={[
-                styles.settingsButton,
-                styles.settingsButtonSmall,
-              ]}
-              textStyles={[
-                styles.settingsButtonText,
-                styles.settingsButtonSmallText,
-              ]}
-            >
-              {item.text}
-            </LinkButton>
-          )}
-          keyExtractor={(item) => `${item.screen}`}
-          numColumns={2}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
-          scrollEnabled={false}
-          style={[styles.settingsGroupContainer]}
-        /> */}
-        <FlatList
-          data={LINKS}
-          renderItem={({ item }) => (
-            <Button
-              onPress={() => navigation.navigate(item.screen)}
-              mode="contained"
-              style={styles.settingsButton}
-              labelStyle={styles.settingsButtonText}
-            >
-              {item.text}
-            </Button>
-          )}
-          keyExtractor={(item) => item.screen}
-          scrollEnabled={false}
-          style={styles.settingsGroupContainer}
-        />
-      </View>
-      <Text style={styles.deviceInfo}>
-        Device ID: 123456789, Release Version v0.0.1a
-      </Text>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  contentContainer: {
+  wrapper: {
     flex: 1,
-    height: '100%',
+    backgroundColor: 'white',
   },
-  loginStatsContainer: {
+  contentContainer: {
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  welcomeContainer: {
+    marginTop: 10,
     flexDirection: 'row',
-    marginHorizontal: 10,
-    marginTop: 25,
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
   },
-  loginStatsStreak: {
-    color: '#002857',
-    fontSize: 20,
-    marginRight: 10,
-  },
-  loginStatsWeek: {
-    color: '#337AB7',
-    fontSize: 20,
-  },
-  settingsContainer: {
-    marginTop: 20,
-  },
-  settingsGroupContainer: {
-    marginHorizontal: 10,
-  },
-  settingsButton: {
-    backgroundColor: '#E8E8E8',
-    borderRadius: 100,
-    justifyContent: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    marginBottom: 15,
-  },
-  settingsButtonText: {
-    color: '#337AB7',
-    fontSize: 18,
+  welcomeText: {
+    fontSize: 40,
     fontWeight: 'bold',
+    color: '#002857',
+    marginLeft: 10,
+    marginBottom: 25,
+    flexBasis: '50%',
   },
-  // See comment above about smaller button option
-  // settingsButtonSmall: {
-  //   flex: 0.5,
-  //   width: '50%',
-  //   marginHorizontal: 10,
-  // },
-  // settingsButtonSmallText: {
-  //   textAlign: 'center',
-  // },
-  deviceInfo: {
-    color: '#E8E8E8',
-    textAlign: 'center',
+  welcomeStreak: {
+    flexGrow: 1,
+    flexBasis: '50%',
   },
 });
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { Stack } from '../Stack';
-import TodayScreen from '../screens/TodayScreen';
 import GroupScreen from '../screens/GroupScreen';
 import AddUpdateScreen from '../screens/AddUpdateScreen';
 import { noHeader } from '../settings';
@@ -18,7 +17,6 @@ const HomeStack = () => {
       // }}
       screenOptions={noHeader}
     >
-      <Stack.Screen name={'Today'}>{() => <TodayScreen />}</Stack.Screen>
       <Stack.Screen name={'Group'}>
         {() => <GroupScreen navigation={navigation} />}
       </Stack.Screen>
