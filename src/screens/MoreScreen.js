@@ -19,10 +19,12 @@ const MoreScreen = () => {
       text: 'Privacy Policy',
     },
     {
+      screen: 'ContactSupport',
       text: 'Contact Support',
       onPress: () => alert('Contact functionality coming soon!'),
     },
     {
+      screen: 'Logout',
       text: 'Log Out',
       onPress: () => FIREBASE_AUTH.signOut(),
     },
@@ -33,31 +35,6 @@ const MoreScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.linksContainer}>
-        {/* 
-        // This is in case we switch back to a 2-column layout with smaller button option
-        <FlatList
-          data={LINKS.filter((e) => e.size === 'small')}
-          renderItem={({ item }) => (
-            <LinkButton
-              to={{ screen: `${item.screen}` }}
-              containerStyles={[
-                styles.linkButton,
-                styles.linkButtonSmall,
-              ]}
-              textStyles={[
-                styles.linkButtonText,
-                styles.linkButtonSmallText,
-              ]}
-            >
-              {item.text}
-            </LinkButton>
-          )}
-          keyExtractor={(item) => `${item.screen}`}
-          numColumns={2}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
-          scrollEnabled={false}
-          style={[styles.linkGroupContainer]}
-        /> */}
         <FlatList
           data={LINKS}
           renderItem={({ item }) => (
@@ -111,15 +88,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  // See comment above about smaller button option
-  // linkButtonSmall: {
-  //   flex: 0.5,
-  //   width: '50%',
-  //   marginHorizontal: 10,
-  // },
-  // linkButtonSmallText: {
-  //   textAlign: 'center',
-  // },
   deviceInfo: {
     color: '#E8E8E8',
     textAlign: 'center',
