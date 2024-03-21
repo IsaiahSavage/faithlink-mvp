@@ -11,6 +11,7 @@ import { TextInput, Button } from 'react-native-paper';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
+import LinkButton from '../components/LinkButton';
 
 const RegisterScreen = () => {
   const [firstName, setFirstName] = useState('');
@@ -66,6 +67,15 @@ const RegisterScreen = () => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
+    {/*<View style={styles.backButtonView}>
+      <LinkButton
+          to={'/LoginScreen'}
+          containerStyles={styles.backButton}
+          textStyles={styles.backButton}
+        >
+          GO BACK
+        </LinkButton>
+  </View>*/}
       <Text style={styles.title}>Register</Text>
       <View style={styles.inputContainer}>
         <TextInput
@@ -222,6 +232,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 'auto',
   },
+  backButton: {
+    //this is where the backbutton styling will go
+  },
+  backButtonView: {
+    //yeet
+  }
 });
 
 export default RegisterScreen;
