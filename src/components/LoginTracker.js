@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useUserContext } from '../contexts/UserContext';
-import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
+import { FIREBASE_AUTH, FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { doc, updateDoc, Timestamp } from 'firebase/firestore';
 
 /**
@@ -9,53 +9,51 @@ import { doc, updateDoc, Timestamp } from 'firebase/firestore';
  * It updates the login streak in the user's data and renders the login streak UI.
  */
 const LoginTracker = () => {
+  const [loading, setLoading] = useState(false);
+
   const { state, dispatch } = useUserContext();
 
-  /**
-   * Sets the login streak for a user based on the last login date and current streak.
-   * @param {Object} lastLogin - The last login date object.
-   * @param {number} loginStreak - The current login streak.
-   * @returns {Promise<void>} - A promise that resolves when the login streak is updated.
-   */
-  const setLoginStreak = async (lastLogin, loginStreak) => {
-    if (!lastLogin || !loginStreak) return;
-    try {
-      const today = new Date(Date.now());
-      const lastLoginDate = new Date(lastLogin.seconds * 1000);
-      const yesterday = new Date(today - 24 * 60 * 60 * 1000);
+  const setLoginStreak = () => {
+    const today = new Date(Date.now());
+    const lastLoginDate = new Date(
+      FIREBASE_AUTH.currentUser.metadata.lastSignInTime,
+    );
 
-      if (lastLoginDate.toDateString() === today.toDateString()) {
-        return;
-      } else if (lastLoginDate.getDate() < yesterday.getDate()) {
-        dispatch({ type: 'SET_LOGIN_STREAK', payload: 1 });
-        dispatch({
-          type: 'SET_LAST_LOGIN_DATE',
-          payload: Timestamp.fromDate(today),
+    // Check if the user has already logged in today
+    if (lastLoginDate.toDateString() === today.toDateString()) {
+      return;
+    }
+
+    // Check if user logged in yesterday
+    const yesterday = new Date(today - 24 * 60 * 60 * 1000);
+    if (lastLoginDate.getDate() === yesterday.getDate()) {
+      updateDoc(doc(FIRESTORE_DB, `users/${state.userID}`), {
+        loginStreak: state.userData.loginStreak + 1,
+      })
+        .then(() => {
+          dispatch({
+            type: 'SET_LOGIN_STREAK',
+            payload: state.userData.loginStreak + 1,
+          });
+        })
+        .catch((error) => {
+          console.log('Error updating login streak: ' + error.message);
         });
-        const userRef = doc(FIRESTORE_DB, 'users', state.userID);
-        await updateDoc(userRef, {
-          loginStreak: 1,
-          lastLoginDate: Timestamp.fromDate(today),
+    } else {
+      updateDoc(doc(FIRESTORE_DB, `users/${state.userID}`), { loginStreak: 1 })
+        .then(() => {
+          dispatch({ type: 'SET_LOGIN_STREAK', payload: 1 });
+        })
+        .catch((error) => {
+          console.log('Error updating login streak: ' + error.message);
         });
-      } else if (lastLoginDate.getDate() < today.getDate()) {
-        dispatch({ type: 'SET_LOGIN_STREAK', payload: loginStreak + 1 });
-        dispatch({
-          type: 'SET_LAST_LOGIN_DATE',
-          payload: Timestamp.fromDate(today),
-        });
-        const userRef = doc(FIRESTORE_DB, 'users', state.userID);
-        await updateDoc(userRef, {
-          loginStreak: loginStreak + 1,
-          lastLoginDate: Timestamp.fromDate(today),
-        });
-      }
-    } catch (error) {
-      console.log('Error updating login streak: ' + error.message);
     }
   };
 
   useEffect(() => {
-    setLoginStreak(state.userData.lastLoginDate, state.userData.loginStreak);
+    setLoading(true);
+    setLoginStreak();
+    setLoading(false);
   }, []);
 
   return (
@@ -71,9 +69,13 @@ const LoginTracker = () => {
         <Feather name={'check'} size={35} color={'#337AB7'} />
         <Feather name={'check'} size={35} color={'gray'} />
       </View> */}
-      <Text style={[styles.loginText, styles.loginBody]}>
-        {state.userData.loginStreak}
-      </Text>
+      {loading ? (
+        <></>
+      ) : (
+        <Text style={[styles.loginText, styles.loginBody]}>
+          {state.userData.loginStreak}
+        </Text>
+      )}
     </View>
   );
 };
