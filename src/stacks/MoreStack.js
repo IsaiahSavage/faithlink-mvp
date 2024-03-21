@@ -8,8 +8,8 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 
 const MoreStack = () => {
   return (
-    <Stack.Navigator screenOptions={noHeader}>
-      <Stack.Screen name="More" component={MoreScreen} />
+    <Stack.Navigator initialRouteName={'Default'} screenOptions={noHeader}>
+      <Stack.Screen name="Default" component={MoreScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
