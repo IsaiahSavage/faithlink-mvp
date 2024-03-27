@@ -9,6 +9,7 @@ const NavIconLabeled = ({
   text,
   navScreenName,
   navScreenArgs,
+  onPress,
 }) => {
   const navigation = useNavigation();
 
@@ -16,7 +17,11 @@ const NavIconLabeled = ({
     <View style={styles.actionContainer}>
       <Pressable
         style={styles.actionButton}
-        onPress={() => navigation.navigate(navScreenName, navScreenArgs)}
+        onPress={
+          onPress
+            ? onPress
+            : () => navigation.navigate(navScreenName, navScreenArgs)
+        }
       >
         <Feather name={name} size={40} color={color} />
       </Pressable>

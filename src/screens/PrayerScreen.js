@@ -6,26 +6,26 @@ import UpdateList from '../components/UpdateList';
 const REQUESTS = [
   {
     header: 'Prayer for my grandpa',
-    timestamp: 'Today',
+    createdOn: 'Today',
     content: 'This is a prayer request.',
     id: '123958603',
   },
   {
     header: 'Prayer for campus',
-    timestamp: 'Yesterday',
+    createdOn: 'Yesterday',
     content:
       'This is a long piece of text to test the wrapping of the content around to the next line. Hopefully this works.',
     id: '123694032',
   },
   {
     header: 'I need help',
-    timestamp: '2d ago',
+    createdOn: '2d ago',
     content: 'I do not know what to do.',
     id: '123860301',
   },
   {
     header: 'I need help',
-    timestamp: '3d ago',
+    createdOn: '3d ago',
     content: 'I do not know what to do.',
     id: '123865301',
   },

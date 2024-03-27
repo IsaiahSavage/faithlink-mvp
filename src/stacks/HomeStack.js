@@ -1,27 +1,31 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Stack } from '../Stack';
 import TodayScreen from '../screens/TodayScreen';
 import GroupScreen from '../screens/GroupScreen';
-
-const HomeStackScreen = createMaterialTopTabNavigator();
+import AddUpdateScreen from '../screens/AddUpdateScreen';
+import { noHeader } from '../settings';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeStack = () => {
+  const navigation = useNavigation();
+
   return (
-    <HomeStackScreen.Navigator
+    <Stack.Navigator
       initialRouteName="Group" //Changed from "Today" -> "Group"
-      initialLayout={{
-        width: Dimensions.get('window').width,
-      }}
-      screenOptions={{ tabBarStyle: { display: 'none' } }} >
-        
-      <HomeStackScreen.Screen name={'Today'}>
-        {() => <TodayScreen />}
-      </HomeStackScreen.Screen>
-      <HomeStackScreen.Screen name={'Group'}>
-        {() => <GroupScreen />}
-      </HomeStackScreen.Screen>
-    </HomeStackScreen.Navigator>
+      // initialLayout={{
+      //   width: Dimensions.get('window').width,
+      // }}
+      screenOptions={noHeader}
+    >
+      <Stack.Screen name={'Today'}>{() => <TodayScreen />}</Stack.Screen>
+      <Stack.Screen name={'Group'}>
+        {() => <GroupScreen navigation={navigation} />}
+      </Stack.Screen>
+      <Stack.Screen name={'AddUpdateScreen'}>
+        {() => <AddUpdateScreen navigation={navigation} />}
+      </Stack.Screen>
+    </Stack.Navigator>
   );
 };
 

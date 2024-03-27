@@ -50,9 +50,9 @@ const LoginScreen = ({ navigation }) => {
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           returnKeyType="next"
-          // onSubmitEditing={() => {
-          //   this.PasswordInput.focus();
-          // }}
+          onSubmitEditing={() => {
+            this.PasswordInput.focus();
+          }}
           blurOnSubmit={false}
         />
         <TextInput
@@ -64,13 +64,20 @@ const LoginScreen = ({ navigation }) => {
           textContentType="password"
           secureTextEntry={hidePass ? true : false}
           autoCorrect={false}
-          // ref={(input) => {
-          //   this.PasswordInput = input;
-          // }}
+          ref={
+            Platform.OS === 'web'
+              ? null
+              : (input) => {
+                  this.PasswordInput = input;
+                }
+          }
           underlineColor="transparent"
           theme={{ colors: { primary: '#002857' } }}
           right={
-            <TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />
+            <TextInput.Icon
+              icon={hidePass ? 'eye' : 'eye-off'}
+              onPress={() => setHidePass(!hidePass)}
+            />
           }
         />
         {loading ? (

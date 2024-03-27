@@ -5,25 +5,25 @@ import UpdateList from '../components/UpdateList';
 const ACTIVITY = [
   {
     header: 'Isaiah shared an update',
-    timestamp: '2d ago',
+    createdOn: '11/30/23',
     content: 'This is an update as displayed in the activity section',
     id: '123456789',
   },
   {
     header: 'Isaiah shared an update',
-    timestamp: '2d ago',
+    createdOn: '11/30/23',
     content: 'This is an update as displayed in the activity section',
     id: '987654321',
   },
   {
     header: 'Isaiah shared an update',
-    timestamp: '2d ago',
+    createdOn: '11/30/23',
     content: 'This is an update as displayed in the activity section',
     id: '975312468',
   },
   {
     header: 'Isaiah shared an update',
-    timestamp: '2d ago',
+    createdOn: '11/30/23',
     content: 'This is an update as displayed in the activity section',
     id: '000000001',
   },

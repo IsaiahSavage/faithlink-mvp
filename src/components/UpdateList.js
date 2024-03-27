@@ -7,10 +7,10 @@ const UpdateList = ({ updates, title, containerStyles }) => {
     <View style={[styles.container, containerStyles]}>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.updateList}>
-        {updates.map(({ header, timestamp, content, id }) => (
+        {updates.map(({ header, createdOn, content, id }) => (
           <Update
             header={header}
-            timestamp={timestamp}
+            timestamp={new Date(createdOn.seconds * 1000).toLocaleDateString()}
             content={content}
             key={id}
           />
