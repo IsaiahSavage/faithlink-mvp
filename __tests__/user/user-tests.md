@@ -31,6 +31,9 @@ Objective: To check if the group leader contact button is functioning
 --What is the contact number for the group leader?
 -Tap anywhere outside the box to exit the page
 
+Objective: To view other group members (and it be clearly denoted who the group leader is by a badge)
+(Not functional yet)
+
 Activity Page:
 
 Objective: To see what information fellow group members have shared with the group
