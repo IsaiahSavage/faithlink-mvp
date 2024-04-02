@@ -39,5 +39,4 @@ yarn-error.*
 .prettierrc.js
 
 # Build
-app.json
 eas.json
