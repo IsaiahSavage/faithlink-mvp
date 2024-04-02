@@ -37,3 +37,7 @@ yarn-error.*
 # Editor config files
 .eslintrc.js
 .prettierrc.js
+
+# Build
+app.json
+eas.json
