@@ -7,7 +7,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@react-native-community|expo-linear-gradient|@react-native-picker|@react-navigation|@react-native|@react-native-async-storage|@react-native-picker|@react-native-community|@react-native-paper|@react-native-render-html|@react-native-safe-area-context|@react-native-screens|@react-native-tab-view|@react-native-web|@expo|expo|@expo/vector-icons|expo-status-bar|@rneui/base|@rneui/themed|@firebase|firebase|firebase/.*)"
+    ],
+    "setupFiles": ["<rootDir>/__mocks__/mockAsyncStorage.js"]
   },
   "dependencies": {
     "@expo/config-plugins": "~7.2.2",
@@ -39,8 +47,12 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@react-native-community/eslint-config": "^3.2.0",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^12.4.5",
     "eslint": "^8.39.0",
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-plugin-react": "^7.32.2",
+    "jest": "^29.7.0",
+    "jest-expo": "^49.0.0"
   },
   "private": true
 }
