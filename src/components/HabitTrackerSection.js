@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
+import ContentModal from './ContentModal';
+import { Portal } from 'react-native-paper';
 
-const HabitTrackerSection = ({ title, text, isComplete }) => {
+const HabitTrackerSection = ({ title, text, content, isComplete }) => {
   const [complete, setComplete] = useState(isComplete && true);
+  const [isContentModalVisible, setIsContentModalVisible] = useState(false);
 
   const toggleTask = () => setComplete(!complete);
+
+  const showContentModal = () => setIsContentModalVisible(true);
+  const hideContentModal = () => setIsContentModalVisible(false);
 
   return (
     <View style={styles.container}>
@@ -17,10 +23,18 @@ const HabitTrackerSection = ({ title, text, isComplete }) => {
         ]}
         onPress={toggleTask}
       />
-      <View style={styles.textContainer}>
+      <Pressable onPress={showContentModal} style={styles.textContainer}>
         <Text style={[styles.text, styles.title]}>{title}</Text>
         <Text style={styles.text}>{text}</Text>
-      </View>
+      </Pressable>
+      <Portal>
+        <ContentModal
+          visible={isContentModalVisible}
+          hideModal={hideContentModal}
+          title={title}
+          content={content}
+        />
+      </Portal>
     </View>
   );
 };
@@ -39,6 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexGrow: 3,
     minHeight: 75,
+    maxWidth: '90%',
   },
   title: {
     fontWeight: 'bold',

@@ -5,10 +5,7 @@ import { collection, doc, getDoc } from 'firebase/firestore';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../firebase/firebaseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RenderHTML from 'react-native-render-html';
-
-const MSG_HTML_FAILED_TO_LOAD = {
-  html: '<h1>Failed to load resource</h1><p>Check your internet connection and try again.</p>',
-};
+import { MSG_HTML_FAILED_TO_LOAD } from '../utils/FetchUtils';
 
 const ViewResourceScreen = ({ route, navigation }) => {
   const { resourceID } = route.params;

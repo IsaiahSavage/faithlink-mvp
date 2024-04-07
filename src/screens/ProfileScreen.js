@@ -3,26 +3,29 @@ import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import LoginTracker from '../components/LoginTracker';
 import HabitTracker from '../components/HabitTracker';
 import { useUserContext } from '../contexts/UserContext';
+import { Provider } from 'react-native-paper';
 
 const ProfileScreen = () => {
   const { state, dispatch } = useUserContext();
 
   return (
-    <ScrollView style={styles.wrapper}>
-      <View style={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Text style={styles.welcomeText}>
-            Welcome,{' '}
-            {Object.hasOwn(state.userData, 'first')
-              ? state.userData.first
-              : 'User'}
-            !
-          </Text>
-          <LoginTracker style={styles.welcomeStreak} />
+    <Provider>
+      <ScrollView style={styles.wrapper}>
+        <View style={styles.contentContainer}>
+          <View style={styles.welcomeContainer}>
+            <Text style={styles.welcomeText}>
+              Welcome,{' '}
+              {Object.hasOwn(state.userData, 'first')
+                ? state.userData.first
+                : 'User'}
+              !
+            </Text>
+            <LoginTracker style={styles.welcomeStreak} />
+          </View>
+          <HabitTracker />
         </View>
-        <HabitTracker />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </Provider>
   );
 };
 
