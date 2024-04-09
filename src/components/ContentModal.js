@@ -7,17 +7,14 @@ import { MSG_HTML_FAILED_TO_LOAD } from '../utils/FetchUtils';
 const ContentModal = ({ visible, hideModal, title, content }) => {
   const { width } = useWindowDimensions();
 
-  return (
-    <Modal
-      visible={visible}
-      onDismiss={hideModal}
-      contentContainerStyle={styles.modal}
-    >
-      <Text style={[styles.text, styles.title]}>{title}</Text>
-      <View style={styles.contentContainer}>
-        {typeof content == 'string' ? (
-          <Text style={styles.text}>{content}</Text>
-        ) : content.hasOwnProperty('source') ? (
+  const formatContent = () => {
+    switch (typeof content) {
+      case 'string':
+        return <Text style={styles.text}>{content}</Text>;
+      case 'undefined':
+        return <Text style={styles.text}>No content available.</Text>;
+      case 'object':
+        return content.hasOwnProperty('source') ? (
           <WebView
             source={
               content.hasOwnProperty('source') && content.source !== null
@@ -32,8 +29,18 @@ const ContentModal = ({ visible, hideModal, title, content }) => {
           />
         ) : (
           <View>{content}</View>
-        )}
-      </View>
+        );
+    }
+  };
+
+  return (
+    <Modal
+      visible={visible}
+      onDismiss={hideModal}
+      contentContainerStyle={styles.modal}
+    >
+      <Text style={[styles.text, styles.title]}>{title}</Text>
+      <View style={styles.contentContainer}>{formatContent()}</View>
       <Button
         style={styles.button}
         labelStyle={styles.buttonText}

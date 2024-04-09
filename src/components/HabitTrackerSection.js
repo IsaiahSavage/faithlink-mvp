@@ -15,6 +15,7 @@ const HabitTrackerSection = ({ title, text, content, isComplete }) => {
   return (
     <View style={styles.container}>
       <Pressable
+        testID="habit-tracker-section-checkbox"
         style={() => [
           {
             backgroundColor: complete ? '#337AB7' : '#E8E8E8',
@@ -23,7 +24,11 @@ const HabitTrackerSection = ({ title, text, content, isComplete }) => {
         ]}
         onPress={toggleTask}
       />
-      <Pressable onPress={showContentModal} style={styles.textContainer}>
+      <Pressable
+        testID="habit-tracker-section-text-container"
+        onPress={showContentModal}
+        style={styles.textContainer}
+      >
         <Text style={[styles.text, styles.title]}>{title}</Text>
         <Text style={styles.text}>{text}</Text>
       </Pressable>

@@ -41,6 +41,11 @@ describe('ProfileScreen', () => {
     render(<ProfileScreen />);
   });
 
+  it('matches the snapshot', () => {
+    const { toJSON } = render(<ProfileScreen />);
+    expect(toJSON()).toMatchSnapshot();
+  });
+
   it('displays the welcome message', () => {
     const { getByText } = render(<ProfileScreen />);
     const welcomeMessage = getByText(/Welcome, John!/);

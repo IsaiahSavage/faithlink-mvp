@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileScreen matches the snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        {
+          "backgroundColor": "white",
+          "flex": 1,
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "marginTop": 10,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-evenly",
+                "marginTop": 10,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#002857",
+                  "flexBasis": "50%",
+                  "fontSize": 40,
+                  "fontWeight": "bold",
+                  "marginBottom": 25,
+                  "marginLeft": 10,
+                }
+              }
+            >
+              Welcome,
+               
+              John
+              !
+            </Text>
+            <View
+              testID="loginTracker"
+            />
+          </View>
+          <View
+            testID="habitTracker"
+          />
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaProvider>
+`;
