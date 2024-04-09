@@ -25,7 +25,6 @@
 - Make sure you're logged into the app and have joined the test group using CODE: ####
 
 - **Question: What is the name of the group you're in?**
-
 - **Question: When is the next meeting? Where is the next meeting?**
 - **Question: What is the top update from the group?**
 
