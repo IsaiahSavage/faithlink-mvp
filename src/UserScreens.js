@@ -9,11 +9,12 @@ import GroupScreen from './screens/GroupScreen';
 import ResourcesStack from './stacks/ResourcesStack';
 import PrayerStack from './stacks/PrayerStack';
 import ActivityStack from './stacks/ActivityStack';
-import ProfileStack from './stacks/ProfileStack';
+import MoreStack from './stacks/MoreStack';
 import { IconButton } from 'react-native-paper';
 import { FIREBASE_AUTH } from '../firebase/firebaseConfig';
 import { useUserContext } from './contexts/UserContext';
 import HomeStack from './stacks/HomeStack';
+import ProfileScreen from './screens/ProfileScreen';
 
 const UserScreens = ({ route }) => {
   const { state, dispatch } = useUserContext();
@@ -81,7 +82,8 @@ const UserScreens = ({ route }) => {
           ),
         }}
       /> */}
-      <Tabs.Screen
+      {/* See https://github.com/IsaiahSavage/mvnu-spiritual-life-app/issues/50: Disabled for MVP */}
+      {/* <Tabs.Screen
         name="Activity"
         component={ActivityStack}
         options={{
@@ -94,18 +96,16 @@ const UserScreens = ({ route }) => {
             />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
-        name="More"
-        component={ProfileStack}
+        name="Profile"
+        component={ProfileScreen}
         options={{
-          headerLeft: () => <HeaderProfileButton />,
           headerTitle: () => (
             <Text
               style={{
                 color: '#337AB7',
                 fontSize: 25,
-                right: 40,
               }}
             >
               {user ? `${user.data.first} ${user.data.last}` : 'User'}
@@ -124,6 +124,29 @@ const UserScreens = ({ route }) => {
               labelStyle={{ color: '#002857', fontSize: 20 }}
               onPress={() => FIREBASE_AUTH.signOut()}
             />
+          ),
+          tabBarIcon: ({ focused }) => (
+            <Feather
+              name={'user'}
+              size={35}
+              color={focused ? '#002857' : '#E8E8E8'}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="More"
+        component={MoreStack}
+        options={{
+          headerTitle: () => (
+            <Text
+              style={{
+                color: '#337AB7',
+                fontSize: 25,
+              }}
+            >
+              More
+            </Text>
           ),
           tabBarIcon: ({ focused }) => (
             <Feather

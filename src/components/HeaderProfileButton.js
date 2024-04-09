@@ -13,7 +13,7 @@ const HeaderProfileButton = () => {
         icon={'account-circle'}
         iconColor="#002857"
         size={35}
-        onPress={() => navigation.navigate('More')}
+        onPress={() => navigation.navigate('Profile')}
         style={styles.buttonContainer}
         labelStyle={styles.text}
       >
