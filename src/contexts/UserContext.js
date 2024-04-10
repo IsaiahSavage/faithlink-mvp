@@ -39,6 +39,17 @@ const userReducer = (state, action) => {
           lastLoginDate: action.payload,
         },
       };
+    case 'SET_HABIT_STATUS':
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          habitStatus: {
+            ...state.userData.habitStatus,
+            ...action.payload,
+          },
+        },
+      };
     default:
       return state;
   }
