@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import ContentModal from './ContentModal';
 import { Portal } from 'react-native-paper';
+import { useUserContext } from '../contexts/UserContext';
+import { FIRESTORE_DB } from '../../firebase/firebaseConfig';
+import { getDoc, doc, setDoc } from 'firebase/firestore';
 
-const HabitTrackerSection = ({ title, text, content, isComplete }) => {
-  const [complete, setComplete] = useState(isComplete && true);
+const HabitTrackerSection = ({ habitID, title, text, content }) => {
+  const { state, dispatch } = useUserContext();
+
+  const [complete, setComplete] = useState(
+    state.userData.habitStatus[habitID] && true,
+  );
   const [isContentModalVisible, setIsContentModalVisible] = useState(false);
+  // const [isBusy, setIsBusy] = useState(false);
 
-  const toggleTask = () => setComplete(!complete);
+  const toggleTask = async () => {
+    setComplete((complete) => !complete);
+
+    const userDoc = await getDoc(doc(FIRESTORE_DB, `users/${state.userID}`));
+
+    setDoc(
+      userDoc.ref,
+      {
+        habitStatus: {
+          ...state.userData.habitStatus,
+          [habitID]: !complete,
+        },
+      },
+      { merge: true },
+    )
+      .then(() =>
+        dispatch({
+          type: 'SET_HABIT_STATUS',
+          payload: {
+            ...state.userData.habitStatus,
+            [habitID]: !complete,
+          },
+        }),
+      )
+      .catch((error) => console.error(error));
+  };
 
   const showContentModal = () => setIsContentModalVisible(true);
   const hideContentModal = () => setIsContentModalVisible(false);

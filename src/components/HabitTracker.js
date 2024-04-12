@@ -53,16 +53,19 @@ const HabitTracker = () => {
                 : votd.passage
           }
           content={votd.passage}
+          habitID={'scripture'}
         />
         <HabitTrackerSection
           title={'Reflection'}
           text={'View a short devo and reflect on it.'}
           content={devo}
+          habitID={'reflection'}
         />
         <HabitTrackerSection
           title={'Prayer'}
           text={'Spend some time with God today.'}
           content={prayer}
+          habitID={'prayer'}
         />
       </View>
     </View>
