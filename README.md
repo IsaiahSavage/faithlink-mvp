@@ -1,6 +1,6 @@
-# MVNU Spiritual Life App
+# FaithLink: Spiritual Life App
 
-Repository for my Spiritual Life app. This app is designed to help students at Christian institutions and members of church congregrations grow in their faith and connect with others.
+Repository for the FaithLink MVP. This app is designed to help Christian small groups and their members grow in their faith by providing a platform for sharing resources, organizing meetings, and tracking spiritual growth.
 
 Built with React Native + Expo.
 
