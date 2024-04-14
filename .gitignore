@@ -37,3 +37,6 @@ yarn-error.*
 # Editor config files
 .eslintrc.js
 .prettierrc.js
+
+# Program Data files
+%ProgramData%/
