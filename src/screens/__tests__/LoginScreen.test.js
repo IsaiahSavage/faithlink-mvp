@@ -3,7 +3,7 @@ import { render } from '@testing-library/react-native';
 
 import LoginScreen from '../LoginScreen';
 
-describe('Login Scree',() =>{
+describe('Login Screen',() =>{
 
     //does the page render
 
