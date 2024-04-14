@@ -40,7 +40,7 @@ const ViewResourceScreen = ({ route, navigation }) => {
         source={
           resource.hasOwnProperty('source') && resource.source !== null
             ? { ...resource.source }
-            : MSG_HTML_FAILED_TO_LOAD
+            : MSG_HTML_FAILED_TO_LOAD.source
         }
         contentWidth={width}
         // style={styles.html}
