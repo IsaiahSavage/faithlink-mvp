@@ -25,7 +25,6 @@
 - Make sure you're logged into the app and have joined the test group using CODE: ####
 
 - **Question: What is the name of the group you're in?**
-
 - **Question: When is the next meeting? Where is the next meeting?**
 - **Question: What is the top update from the group?**
 
@@ -33,7 +32,7 @@
 
 - On the Groups page, tap the circular icon that has the outline of a person and says "Contact" underneath
 
-- **Question: What is the name of the group leader?**
+- **Question 5: What is the name of the group leader?**
 - Tap anywhere outside the box to exit the page
 
 ### Objective: To private message group leader from contact page
@@ -70,6 +69,7 @@
 - There are many different ways 
 
 - **Question: What is the name of the featured resource on the Resources page?**
+- **Question: Navigate into the featured resource and take a screenshot. Upload this picture to the form.**
 
 ## Profile Page:
 
@@ -84,33 +84,3 @@
 ### Objective: To change something about your profile
 
 - (Not functional yet)
-
-# Authentication Page
-
-As a user when I am on the Registration screen
-I should see a 'Back' button
-And when I click the 'Back' button
-I should be taken back to the Login screen
-
-# Group Page (Home)
-
-When I log into the app
-I should see the page that shows information about my group
-
-And I am on the Group page
-I should see a Contact button
-
-
-Haven't done these in the testing walkthrough yet, because we don't have the functionality:
-
-and I am on the Group page
-I should be able to view my fellow group members
-When I click/tap on the Contact button
-I should be able to message the leader of my group directly
-
-# Activity Page
-
-I should be able to view actions taken by other members in my group
-As well as information they share with the group
-
-# Profile Page
