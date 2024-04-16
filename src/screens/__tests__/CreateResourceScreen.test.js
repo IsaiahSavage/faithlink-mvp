@@ -2,6 +2,24 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 
 import CreateResourceScreen from '../CreateResourceScreen';
+/*
+jest.mock('../../contexts/UserContext.js', () => ({
+    __esModule: true,
+    useUserContext: jest.fn(() => ({
+      state: {
+        // Mocked user data
+        userID: 1,
+        userData: {
+          id: 1,
+          first: 'John',
+          last: 'Doe',
+          email: 'john.doe@example.com',
+        },
+      },
+      // Mocked function
+      dispatch: jest.fn(),
+    })),
+  })); */
 
 jest.useFakeTimers();
 
