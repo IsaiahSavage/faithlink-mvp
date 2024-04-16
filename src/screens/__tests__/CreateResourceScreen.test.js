@@ -3,10 +3,31 @@ import { render } from '@testing-library/react-native';
 
 import CreateResourceScreen from '../CreateResourceScreen';
 
+jest.mock('../../contexts/UserContext.js', () => ({
+    __esModule: true,
+    useUserContext: jest.fn(() => ({
+      state: {
+        // Mocked user data
+        userID: 1,
+        userData: {
+          id: 1,
+          first: 'John',
+          last: 'Doe',
+          email: 'john.doe@example.com',
+        },
+        /*Platform: {
+            OS: 'ios's
+        },*/
+      },
+      // Mocked function
+      dispatch: jest.fn(),
+    })),
+  }));
+
 describe('CreateResource Screen', () =>{
 
     //page renders
-    it('page renders correectly', () =>{
+    it('page renders correctly', () =>{
         render(<CreateResourceScreen/>); 
      });
  

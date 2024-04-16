@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 
 import LoginScreen from '../LoginScreen';
-
 describe('Login Screen',() =>{
 
     //does the page render
@@ -28,6 +27,4 @@ describe('Login Screen',() =>{
     //Does the create account button take you to the registration page?
 
     //Does the test login actually log you in?
-
-
-});
+})});
