@@ -3,17 +3,17 @@ import { render } from '@testing-library/react-native';
 
 import RegisterScreen from '../RegisterScreen';
 
-describe('Register Screen', () =>{
+jest.useFakeTimers();
 
-    //does page render
-    it('page renders correectly', () =>{
-        render(<RegisterScreen/>); 
-     });
+describe('RegisterScreen', () => {
+  //does page render
+  it('page renders correectly', () => {
+    render(<RegisterScreen />);
+  });
 
-    //is snapshot same
+  //is snapshot same
 
-    //does the backbutton take you to the login screen
+  //does the backbutton take you to the login screen
 
-    //does putting in mock data and pressing the button actually register a person
-
+  //does putting in mock data and pressing the button actually register a person
 });

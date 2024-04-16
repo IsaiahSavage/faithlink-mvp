@@ -92,7 +92,7 @@ const LoginScreen = ({ navigation }) => {
               dark={true}
               onPress={signIn}
             >
-              Login
+              Sign In
             </Button>
             <Button
               mode="text"

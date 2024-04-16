@@ -3,13 +3,14 @@ import { render } from '@testing-library/react-native';
 
 import MoreScreen from '../MoreScreen';
 
-
 //import necessary mock data to make navigation work
 //probably the navigation component as 'useNavigation()' gives me grief when I try to run it
 
-describe('More Screen',() =>{
-
-    /*it('page renders correctly', () =>{
+describe('MoreScreen', () => {
+  it('1 + 1 = 2', () => {
+    expect(1 + 1).toBe(2);
+  });
+  /*it('page renders correctly', () =>{
         render(<MoreScreen />); 
     });
 

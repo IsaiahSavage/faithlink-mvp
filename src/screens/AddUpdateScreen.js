@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Platform,
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { toProperCase } from '../utils/StringUtils';

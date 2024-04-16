@@ -3,21 +3,55 @@ import { render } from '@testing-library/react-native';
 
 import ResourcesScreen from '../ResourcesScreen';
 
-describe('Resources Screen', () =>{
+jest.useFakeTimers();
 
-    //does page render
-    it('page renders correectly', () =>{
-        render(<ResourcesScreen/>); 
-     });
+jest.mock('../../contexts/UserContext.js', () => ({
+  __esModule: true,
+  useUserContext: jest.fn(() => ({
+    state: {
+      // Mocked user data
+      userID: 't3stp1dtjskgjqivnbvq',
+      userData: {
+        id: 1,
+        first: 'John',
+        last: 'Doe',
+        email: 'john.doe@example.com',
+        habitStatus: {
+          scripture: true,
+          reflection: true,
+          prayer: true,
+        },
+      },
+      groupID: 't3stg1d',
+    },
+    // Mocked function
+    dispatch: jest.fn(),
+  })),
+}));
 
-    //is snapshot same
+jest.mock('@react-navigation/native', () => {
+  const actualNav = jest.requireActual('@react-navigation/native');
+  return {
+    ...actualNav,
+    useNavigation: () => ({
+      navigate: jest.fn(),
+    }),
+  };
+});
 
-    //Can input be put into the top bar
+describe('ResourcesScreen', () => {
+  //does page render
+  it('page renders correectly', () => {
+    render(<ResourcesScreen />);
+  });
 
-    //does clicking on each of the 'articles' 'videos' etc buttons actually take you to the search page
+  //is snapshot same
 
-    //bottom righthand button should take you to createResourceScreen
+  //Can input be put into the top bar
 
-    //selecting the 'featured resource' on the front page should send you to the featured resource
+  //does clicking on each of the 'articles' 'videos' etc buttons actually take you to the search page
 
+  //bottom righthand button should take you to createResourceScreen
+
+  //selecting the 'featured resource' on the front page should send you to the featured resource
 });
