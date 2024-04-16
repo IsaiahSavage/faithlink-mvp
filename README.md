@@ -53,6 +53,10 @@ Coming Soon.
 
 In order to build for iOS, you will need to have a Mac with Xcode installed. You will also need to have an Apple Developer account. You can follow the instructions on the [Expo documentation](https://docs.expo.dev/distribution/building-standalone-apps/) to build a standalone app for iOS.
 
+## A Note on Web
+
+Do not run `npm start` to run the app in a web browser. The app is not currently set up to run in a web browser. We are working on adding web support.
+
 ## Testing
 
 We are using Jest for testing. To run the tests, run `npm test` in the root directory of the project.
