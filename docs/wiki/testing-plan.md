@@ -2,7 +2,7 @@
 
 Initial Author: Isaiah Savage
 
-Last Updated: 3/25/2024
+Last Updated: 4/16/2024
 
 By: Isaiah Savage
 
@@ -32,7 +32,7 @@ My approach to unit testing will be twofold in its granularity:
 
 Unit tests will be developed and ran locally on the dev's machine, as setting up the CI/CD pipeline for unit tests is not a priority at this time. The results of the tests will be logged in the console.
 
-Dev(s) Responsible: @IsaiahSavage
+Dev(s) Responsible: @IsaiahSavage, @HyperbolicInt
 
 ## Integration (Component) Tests
 
@@ -83,9 +83,9 @@ Dev(s) Responsible: TBD
 
 ### My Approach
 
-I plan to have these tests written as scripts for the dev(s) to follow. The scripts will be written in Markdown and will be stored in the `docs/tests/scripts` directory of the repository. The scripts will be written in a way that allows the dev(s) to follow along and test the app on their own device.
+I plan to have these tests written as scripts for the dev(s) to follow. The scripts will be written in Markdown and will be stored in the `__tests__/user/` directory of the repository. The scripts will be written in a way that allows the dev(s) to follow along and test the app on their own device.
 
-Dev(s) Responsible: TBD
+Dev(s) Responsible: @HyperbolicInt
 
 ## User or Customer Tests
 
@@ -95,9 +95,9 @@ Dev(s) Responsible: TBD
 
 ### My Approach
 
-User tests will be conducted by the dev(s) and the project sponsor, Mark Hansher. The tests will be conducted on each individual's chosen target platform (Android/iOS/~Web~). The results of the tests will be logged in a Microsoft Excel spreadsheet for future analysis.
+User tests will be conducted by the dev(s) and the project sponsor, Mark Hansher. The tests will be conducted on each individual's chosen target platform (Android/iOS/~~Web~~). The results of the tests will be logged in a Microsoft Excel spreadsheet for future analysis.
 
-Dev(s) Responsible: TBD
+Dev(s) Responsible: @HyperbolicInt
 
 ## Performance Tests
 
