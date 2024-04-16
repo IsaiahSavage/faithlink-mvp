@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 
 import CreateResourceScreen from '../CreateResourceScreen';
-
+/*
 jest.mock('../../contexts/UserContext.js', () => ({
     __esModule: true,
     useUserContext: jest.fn(() => ({
@@ -15,14 +15,11 @@ jest.mock('../../contexts/UserContext.js', () => ({
           last: 'Doe',
           email: 'john.doe@example.com',
         },
-        /*Platform: {
-            OS: 'ios's
-        },*/
       },
       // Mocked function
       dispatch: jest.fn(),
     })),
-  }));
+  })); */
 
 describe('CreateResource Screen', () =>{
 
