@@ -32,7 +32,7 @@
 
 - On the Groups page, tap the circular icon that has the outline of a person and says "Contact" underneath
 
-- **Question: What is the name of the group leader?**
+- **Question 5: What is the name of the group leader?**
 - Tap anywhere outside the box to exit the page
 
 ### Objective: To private message group leader from contact page
@@ -69,6 +69,7 @@
 - There are many different ways 
 
 - **Question: What is the name of the featured resource on the Resources page?**
+- **Question: Navigate into the featured resource and take a screenshot. Upload this picture to the form.**
 
 ## Profile Page:
 
