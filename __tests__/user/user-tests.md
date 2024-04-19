@@ -22,7 +22,7 @@
 
 ### Objective: To check if the groups page will display group information when the user logs in
 
-- Make sure you're logged into the app and have joined the test group using CODE: ####
+- Make sure you're logged into the app and have joined the test group using CODE: 6hwyw90
 
 - **Question: What is the name of the group you're in?**
 - **Question: When is the next meeting? Where is the next meeting?**
@@ -66,10 +66,10 @@
 
 - On the bottom navigation, tap the magnifying glass icon. This will take you to the Resources page.
 
-- There are many different ways 
+- There are many different ways to search for resources, including by search, by type, by and by tag.
 
 - **Question: What is the name of the featured resource on the Resources page?**
-- **Question: Navigate into the featured resource and take a screenshot. Upload this picture to the form.**
+- **Question: Navigate into the featured resource. What does it say?**
 
 ## Profile Page:
 
