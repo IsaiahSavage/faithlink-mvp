@@ -1,4 +1,4 @@
-# System Requirements Specification - DRAFT (UPDATED 1-29-2024)
+# System Requirements Specification - DRAFT (UPDATED 4-16-2024)
 
 > This document contains a template structure for your system requirements specification. To use this outline, replace the description under each section heading with the information about your project, but keep all of the section headings to maintain the structure of the document. If a section does not apply to your project, keep the heading in your document, and just state that it is not applicable. (In some cases, we might discover later that your project does have requirements related to that section!)
 
@@ -48,9 +48,9 @@ System has to do that a common person could get (e.g., create an account)
   - View group prayer requests
   - Discuss group content with other group members
   - Contact group leader(s) directly
-- Prayer timer for both guided and unguided prayer
-  - Submit a prayer request
-  - View prayer requests
+- ~~Prayer timer for both guided and unguided prayer~~
+  - ~~Submit a prayer request~~
+  - ~~View prayer requests~~
 - Profile linked to an account
   - Create an account
   - Log in to an account
@@ -58,7 +58,7 @@ System has to do that a common person could get (e.g., create an account)
   - Remove an account
   - View profile information
   - View information on favorite resources
-- Activity page
+- ~~Activity page~~
 - Group leaders can create content for the Resources page
 
 ### Similar System Information
@@ -76,34 +76,43 @@ TBD
 
 ## Functional or System Requirements
 
-- [ ] Daily habit tracking (Logins, Scripture, Reflection Journal, Prayer)
-  - Upon logging into the system, the user should be presented with a daily habit tacking dashboard that displays the user’s current login streak and the user’s progress on the daily habits (Scripture, Reflection Journal, Prayer).
-  - The user should be able to access the daily habit activities from the dashboard.
-- [ ] Resources for various topics, including articles, videos, and other forms of content
+- [x] Daily habit tracking (Logins, Scripture, Reflection Journal, Prayer)
+
+  - Upon viewing their profile, the user should be presented with a daily habit tacking dashboard that displays the user’s current login streak and the user’s progress on the daily habits (Scripture, Reflection Journal, Prayer).
+  - The user should be able to access the daily habit activities from the profile page.
+
+- [x] Resources for various topics, including articles, videos, and other forms of content
+
   - The user should be able to access the Resources page from the bottom tabs.
   - The user should be able to view or access a resource from the Resources page.
   - The user should be able to search for a topic from the Resources page.
   - The user should be able to view or access group-specific resources from the Resources page.
   - _SHOULD HAVE_: The user should be able to filter search results by topic (e.g., Faith, Anxiety, Relationships, Health, etc.).
-  - _SHOULD HAVE_: The user should be able to save a list of favorite resources.
-- [ ] Group specific content (i.e., resources, contact info, prayer requests, group updates)
+  - _NICE TO HAVE_: The user should be able to save a list of favorite resources.
+
+- [x] Group specific content (i.e., resources, contact info, prayer requests, group updates)
+
   - The user should be able to access the groups page from the Home page.
   - The user should be able to see the group they are a part of from the groups page.
   - The user should be able to view content specific to their group from the groups page.
-  - The user should be prompted to learn more about groups if they are not a part of one.
-  - The user should be able to submit a prayer request to their group.
-  - The user should be able to view prayer requests from fellow group members.
+  - ~~The user should be prompted to learn more about groups if they are not a part of one.~~
+  - ~~The user should be able to submit a prayer request to their group.~~
+  - ~~The user should be able to view prayer requests from fellow group members.~~
   - _SHOULD HAVE_: The user should be able to sign up for a group from the Group page during sign-up periods.
   - _SHOULD HAVE_: The user should be able to discuss group content with other group members.
-- [ ] Prayer timer for both guided and unguided prayer
-  - The user should be able to access the Prayer page from the bottom tabs.
-  - The user should be able to select a prayer timer length.
-  - The user should be able to start the prayer timer.
-  - The user should be able to pause the prayer timer.
-  - The user should be able to stop the prayer timer.
-  - _SHOULD HAVE_: The user should be able to select whether the prayer is guided or unguided.
-  - _SHOULD HAVE_: The user should be able to view prayer requests by fellow members of their group while using the guided prayer feature.
-- [ ] Profile linked to simple email/password authentication
+
+- ~~[ ] Prayer timer for both guided and unguided prayer~~
+
+  - ~~The user should be able to access the Prayer page from the bottom tabs.~~
+  - ~~The user should be able to select a prayer timer length.~~
+  - ~~The user should be able to start the prayer timer.~~
+  - ~~The user should be able to pause the prayer timer.~~
+  - ~~The user should be able to stop the prayer timer.~~
+  - _SHOULD HAVE_: ~~The user should be able to select whether the prayer is guided or unguided.~~
+  - _SHOULD HAVE_: ~~The user should be able to view prayer requests by fellow members of their group while using the guided prayer feature.~~
+
+- [x] Profile linked to simple email/password authentication
+
   - The user should be able to create a local account using an email and password.
   - The user should be able to log in to and out of the app.
   - The user should be able to view their profile information from the Profile page.
@@ -115,13 +124,16 @@ TBD
   - _NICE TO HAVE_: The user should be able to upload a profile picture.
   - _NICE TO HAVE_: The user should be able to log in using a social media account (e.g., Google, Facebook, etc.).
   - _NICE TO HAVE_: The user should be able to reset their password.
-- [ ] Activity page
-  - The user should be able to access the Activity page from the bottom tabs.
-  - The user should be able to view important updates from their group on the Activity page.
-  - The user should be able to dismiss updates.
-  - Activities should be listed with a timestamp.
-  - _NICE TO HAVE_: The user should receive a push notification when a new update is available.
-- [ ] Group leaders can create content for the Resources page (NOTE: this may be a future feature after first release)
+
+- ~~[ ] Activity page~~
+
+  - ~~The user should be able to access the Activity page from the bottom tabs.~~
+  - ~~The user should be able to view important updates from their group on the Activity page.~~
+  - ~~The user should be able to dismiss updates.~~
+  - ~~Activities should be listed with a timestamp.~~
+  - _NICE TO HAVE_: ~~The user should receive a push notification when a new update is available.~~
+
+- [x] Group leaders can create content for the Resources page (NOTE: this may be a future feature after first release)
 
 ## Interface Requirements
 
@@ -130,8 +142,11 @@ TBD
 ### User Interfaces
 
 - iOS App (accessed by members, leaders, content creators, admins, etc.)
+
 - Android App (accessed by members, leaders, content creators, admins, etc.)
-- Website (accessed by members, leaders, content creators, admins, etc.)
+
+- ~~Website (accessed by members, leaders, content creators, admins, etc.)~~
+
 - Database Console (accessed by admins)
 
 ### Hardware Interfaces
@@ -190,7 +205,7 @@ No time or memory constraints are currently established.
 ### System Environment Constraints
 
 - HTTPS for all network requests
-- HTML, CSS, and JavaScript(?) support for viewing content
+- HTML, CSS, and JavaScript support for viewing content
 
 ### Security Requirements
 
@@ -244,7 +259,7 @@ Describes how to:
 
 ### Portability
 
-iOS, Android, Web should all be supported.
+iOS, Android, ~~Web~~ should all be supported.
 
 ### Extensibility
 
@@ -254,11 +269,11 @@ Describes any constraints on forward or backward compatibility with other system
 
 Describes the software development environment to be used, including operating systems, programming languages, platforms, or libraries, indicating any reasons that these are required or preferred. What percentage of target dependent statements are likely to be in the system? Keep in mind there is often a difference between the system that you develop the software on and the target systems where the software will execute.
 
-- Developers will make use of Windows for development purposes.
+- Developers will make use of Windows/Linux/Mac for development purposes.
 - macOS + XCode required to build for / deploy to / test on iOS devices.
 - Developers will make use of Visual Studio Code for development purposes.
 - Developers will make use of Git + GitHub for version control.
-- Docker for containerization
+- ~~Docker for containerization~~
 - Firebase for database
 - React Native for app development
 
