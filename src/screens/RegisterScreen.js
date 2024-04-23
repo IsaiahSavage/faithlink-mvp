@@ -56,6 +56,7 @@ const RegisterScreen = () => {
           reflection: false,
           prayer: false,
         },
+        loginStreak: 1,
       });
 
       console.log('Document written with ID: ', docRef.id);
