@@ -10,7 +10,7 @@ const GroupContactModal = ({ visible, hideModal }) => {
       contentContainerStyle={styles.container}
     >
       <Text style={styles.text}>Group Leader: Leonard McCoy</Text>
-      <Text style={styles.text}>Contact number: 740-397-1701</Text>
+      <Text style={styles.text}>Contact number: 123-456-1701</Text>
       <Text style={styles.text}>Contact email: doctor@notBricklayer.com</Text>
     </Modal>
   );
