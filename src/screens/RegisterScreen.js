@@ -51,6 +51,11 @@ const RegisterScreen = () => {
         last: lastName,
         email: email,
         roleType: 'user',
+        habitStatus: {
+          scripture: false,
+          reflection: false,
+          prayer: false,
+        },
       });
 
       console.log('Document written with ID: ', docRef.id);
