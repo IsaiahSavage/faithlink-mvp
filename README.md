@@ -41,7 +41,7 @@ Coming Soon.
 
 ## Changing Firestore DBs
 
-The app is currently configured to connect to a test Firestore DB. If you are looking to set up a new connection to a different Firestore DB, you'll need to edit the configuration found in `firebase/firestoreConfig.js`. For more information, see the official [Firebase documentation](https://firebase.google.com/docs/firestore/quickstart). 
+The app is currently configured to connect to a test Firestore DB. If you are looking to set up a new connection to a different Firestore DB, you'll need to edit the configuration found in `firebase/firebaseConfig.js`. For more information, see the official [Firebase documentation](https://firebase.google.com/docs/firestore/quickstart). 
 
 ## A Note on Building for iOS
 
