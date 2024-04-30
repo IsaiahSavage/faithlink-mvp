@@ -14,16 +14,6 @@ Here are a few screenshots from the app on iOS:
 
 Coming Soon. In the meantime, you can run the app on your Android device using the Expo Go app. Follow the instructions in the Development Setup section below.
 
-~~1. Download the APK file from the [releases page](https://github.com/IsaiahSavage/mvnu-spiritual-life-app/releases)~~
-
-~~2. Open the APK file on your Android device~~
-
-~~3. Follow the instructions to install the app~~
-
-~~4. Open the app on your device~~
-
-~~5. If you see a warning about installing apps from an unknown source / developer, you may need to enable that setting in your device's settings.~~
-
 ## iOS
 
 Coming Soon. In the meantime, you can run the app on your iOS device using the Expo Go app. Follow the instructions in the Development Setup section below.
@@ -48,6 +38,10 @@ Coming Soon.
 3. Run `npx expo start` to start the development server
 4. Open the Expo Go app on your phone and scan the QR code that appears in the terminal
 5. The app should open on your phone
+
+## Changing Firestore DBs
+
+The app is currently configured to connect to a test Firestore DB. If you are looking to set up a new connection to a different Firestore DB, you'll need to edit the configuration found in `firebase/firebaseConfig.js`. For more information, see the official [Firebase documentation](https://firebase.google.com/docs/firestore/quickstart). 
 
 ## A Note on Building for iOS
 

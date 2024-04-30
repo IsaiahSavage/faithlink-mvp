@@ -46,10 +46,12 @@ const GroupScreen = ({ route }) => {
   const updateGroupID = async (isJoining) => {
     try {
       const userDocRef = doc(FIRESTORE_DB, `/users/${state.userID}`);
-      const groupDocRef = doc(FIRESTORE_DB, `/groups/${groupID}`);
-      await updateDoc(groupDocRef, {
-        members: isJoining ? arrayUnion(userDocRef) : arrayRemove(userDocRef),
-      });
+      if (groupID !== '') {
+        const groupDocRef = doc(FIRESTORE_DB, `/groups/${groupID}`);
+        await updateDoc(groupDocRef, {
+          members: isJoining ? arrayUnion(userDocRef) : arrayRemove(userDocRef),
+        });
+      }
       await updateDoc(userDocRef, {
         groupID: groupID,
         roleType: isJoining ? 'member' : 'user',
